@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brujo Egipcio — Reliquias Ancestrales</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cinzel+Decorative:wght@700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --arena: #F5EDE3;
+            --arena-mid: #EAE0D2;
+            --gold: #B8952E;
+            --gold-light: #C9A84C;
+            --gold-muted: #A08A50;
+            --dark: #141210;
+            --dark-warm: #1E1A16;
+            --text-primary: #1A1510;
+            --text-secondary: #5E5347;
+            --text-tertiary: #8A7D6B;
+            --text-on-dark: #EDE5DA;
+            --text-on-dark-sub: #A69A8A;
+            --border-gold: rgba(184, 149, 46, 0.25);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            color: var(--text-primary);
+            background: var(--arena);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+        img { max-width: 100%; display: block; }
+        a { text-decoration: none; color: inherit; }
+
+        .section-bg {
+            position: relative;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        .section-overlay { position: absolute; inset: 0; pointer-events: none; }
+        .section-content { position: relative; z-index: 2; }
+
+        .egyptian-divider {
+            display: flex; align-items: center; justify-content: center;
+            gap: 16px; margin: 20px auto 0; max-width: 200px;
+        }
+        .egyptian-divider::before, .egyptian-divider::after {
+            content: ''; flex: 1; height: 1px; background: var(--gold); opacity: 0.4;
+        }
+        .egyptian-divider .g { font-size: 0.7rem; color: var(--gold); opacity: 0.6; }
+
+        /* ---- HEADER ---- */
+        .header {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            background: rgba(20,18,16,0.95); backdrop-filter: blur(16px);
+        }
+        .header-top {
+            background: var(--dark); color: var(--gold-light);
+            font: 500 0.6rem/1 'Cinzel', serif; letter-spacing: 0.2em;
+            text-transform: uppercase; text-align: center; padding: 7px 20px;
+            border-bottom: 1px solid rgba(184,149,46,0.06);
+        }
+        .header-main {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 14px 48px; max-width: 1440px; margin: 0 auto;
+        }
+        .header-logo { display: flex; align-items: center; gap: 14px; }
+        .header-logo img {
+            width: 34px; height: 34px; border-radius: 50%; object-fit: cover;
+            border: 1px solid rgba(184,149,46,0.3);
+        }
+        .header-logo span {
+            font: 500 0.8rem/1 'Cinzel', serif; letter-spacing: 0.28em; color: var(--gold-light);
+        }
+        .header-nav { display: flex; gap: 36px; }
+        .header-nav a {
+            font: 400 0.62rem/1 'Cinzel', serif; letter-spacing: 0.18em;
+            text-transform: uppercase; color: var(--text-on-dark-sub); transition: color 0.3s;
+        }
+        .header-nav a:hover { color: var(--gold-light); }
+        .header-icons { display: flex; gap: 18px; align-items: center; }
+        .header-icon {
+            color: var(--text-on-dark-sub); font-size: 1rem;
+            background: none; border: none; cursor: pointer; transition: color 0.3s;
+        }
+        .header-icon:hover { color: var(--gold-light); }
+
+        /* ---- HERO ---- */
+        .hero {
+            min-height: 100vh; display: flex; align-items: center; justify-content: center;
+            text-align: center; position: relative; overflow: hidden; background: var(--dark);
+        }
+        .hero-bg {
+            position: absolute; inset: -20px;
+            background: url('../img/brand-v2/desierto-piramides.jpg') center 40%/cover no-repeat;
+            filter: blur(1px) saturate(0.85); transform: scale(1.05);
+        }
+        .hero-overlay {
+            position: absolute; inset: 0;
+            background:
+                radial-gradient(ellipse at center 60%, rgba(20,18,16,0.3) 0%, rgba(20,18,16,0.65) 70%),
+                linear-gradient(180deg, rgba(20,18,16,0.45) 0%, rgba(20,18,16,0.25) 35%, rgba(20,18,16,0.35) 65%, rgba(20,18,16,0.7) 100%);
+        }
+        .hero-content { position: relative; z-index: 2; max-width: 800px; padding: 0 32px; }
+        .hero-logo {
+            width: 120px; height: 120px; border-radius: 50%; object-fit: cover;
+            margin: 0 auto 40px; border: 1px solid rgba(201,168,76,0.35);
+            box-shadow: 0 0 80px rgba(184,149,46,0.12), 0 0 0 12px rgba(184,149,46,0.04);
+        }
+        .hero h1 {
+            font: 600 clamp(2.4rem,5.5vw,4rem)/1.15 'Cinzel', serif;
+            color: white; margin-bottom: 20px; letter-spacing: 0.06em;
+            text-shadow: 0 2px 16px rgba(0,0,0,0.6), 0 0 80px rgba(0,0,0,0.3);
+        }
+        .hero h1 em { font-style: normal; color: var(--gold-light); text-shadow: 0 2px 16px rgba(0,0,0,0.6); }
+        .hero-tagline {
+            font: 400 clamp(1.1rem,2vw,1.4rem)/1.4 'Cormorant Garamond', serif;
+            color: rgba(255,255,255,0.85); margin-bottom: 48px; letter-spacing: 0.08em;
+            text-shadow: 0 1px 12px rgba(0,0,0,0.5);
+        }
+        .hero-cta {
+            display: inline-block; font: 500 0.6rem/1 'Cinzel', serif;
+            letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold-light);
+            border: 1px solid rgba(201,168,76,0.5); padding: 16px 48px;
+            transition: all 0.5s cubic-bezier(0.25,0,0,1);
+        }
+        .hero-cta:hover { background: var(--gold-light); color: var(--dark); letter-spacing: 0.35em; }
+        .hero-scroll { position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%); z-index: 2; }
+        .hero-scroll .line {
+            width: 1px; height: 48px;
+            background: linear-gradient(to bottom, rgba(201,168,76,0.6), transparent);
+            animation: scrollLine 2.5s ease-in-out infinite;
+        }
+        @keyframes scrollLine {
+            0% { opacity: 0; transform: scaleY(0); transform-origin: top; }
+            50% { opacity: 1; transform: scaleY(1); }
+            100% { opacity: 0; }
+        }
+
+        /* ---- TRUST BAR ---- */
+        .trust-bar { padding: 56px 32px; position: relative; }
+        .trust-bar .section-content {
+            max-width: 1100px; margin: 0 auto;
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+        }
+        .trust-item { text-align: center; padding: 20px 24px; position: relative; }
+        .trust-item:not(:last-child)::after {
+            content: ''; position: absolute; right: 0; top: 20%; height: 60%; width: 1px;
+            background: var(--border-gold);
+        }
+        .trust-glyph { font-size: 1.6rem; color: var(--gold); margin-bottom: 14px; display: block; }
+        .trust-label {
+            font: 500 0.72rem/1.2 'Cinzel', serif; color: var(--text-primary);
+            letter-spacing: 0.08em; margin-bottom: 4px;
+        }
+        .trust-sub {
+            font: italic 0.88rem/1.3 'Cormorant Garamond', serif; color: var(--text-tertiary);
+        }
+
+        /* ---- SECTION HEADERS ---- */
+        .sh { text-align: center; margin-bottom: 56px; }
+        .sh-over {
+            font: 500 0.55rem/1 'Cinzel', serif; letter-spacing: 0.3em;
+            text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 14px;
+        }
+        .sh-over.on-dark { color: var(--gold-light); }
+        .sh-title {
+            font: 400 clamp(1.6rem,3vw,2.2rem)/1.2 'Cinzel', serif; letter-spacing: 0.08em;
+        }
+        .sh-title .a { font: italic 400 clamp(1.6rem,3vw,2.2rem)/1.2 'Cormorant Garamond', serif; }
+        .sh-sub { font: italic 1.05rem/1.4 'Cormorant Garamond', serif; color: var(--text-tertiary); margin-top: 14px; }
+
+        /* ---- BUTTONS ---- */
+        .btn-g {
+            font: 500 0.55rem/1 'Cinzel', serif; letter-spacing: 0.25em; text-transform: uppercase;
+            color: var(--dark); background: var(--gold-light); border: none;
+            padding: 15px 40px; cursor: pointer; transition: all 0.4s;
+        }
+        .btn-g:hover { background: var(--gold); box-shadow: 0 6px 24px rgba(184,149,46,0.25); }
+        .btn-o {
+            font: 500 0.55rem/1 'Cinzel', serif; letter-spacing: 0.25em; text-transform: uppercase;
+            color: var(--text-primary); background: transparent; border: 1px solid var(--text-secondary);
+            padding: 15px 40px; cursor: pointer; transition: all 0.4s;
+        }
+        .btn-o:hover { border-color: var(--gold); color: var(--gold); }
+
+        /* ---- RELIQUIA ---- */
+        .reliquia { padding: 120px 32px; position: relative; }
+        .reliquia .section-content { max-width: 1100px; margin: 0 auto; }
+        .reliquia-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 72px;
+            align-items: center; margin-top: 56px;
+        }
+        .reliquia-img-wrap { position: relative; display: flex; align-items: center; justify-content: center; }
+        .reliquia-img-wrap img {
+            width: 80%; border-radius: 4px;
+            box-shadow: 0 24px 64px rgba(0,0,0,0.4);
+            animation: float 7s ease-in-out infinite;
+        }
+        @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        .reliquia-img-glow {
+            position: absolute; width: 55%; height: 55%; border-radius: 50%;
+            background: radial-gradient(circle, rgba(184,149,46,0.1), transparent 70%);
+            top: 50%; left: 50%; transform: translate(-50%,-50%);
+        }
+        .reliquia-info { color: var(--text-on-dark); }
+        .reliquia-badge {
+            font: 500 0.5rem/1 'Cinzel', serif; letter-spacing: 0.25em; text-transform: uppercase;
+            color: var(--gold-light); border: 1px solid rgba(201,168,76,0.3);
+            padding: 7px 18px; display: inline-block; margin-bottom: 24px;
+        }
+        .reliquia-name {
+            font: 400 clamp(1.6rem,3vw,2.2rem)/1.2 'Cinzel', serif;
+            color: white; letter-spacing: 0.04em; margin-bottom: 6px;
+        }
+        .reliquia-origin {
+            font: italic 1.05rem/1.4 'Cormorant Garamond', serif;
+            color: var(--text-on-dark-sub); margin-bottom: 24px;
+        }
+        .reliquia-desc {
+            font: 400 1.05rem/1.8 'Cormorant Garamond', serif;
+            color: var(--text-on-dark-sub); margin-bottom: 32px;
+        }
+        .reliquia-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 36px; }
+        .reliquia-meta-item { border-left: 1px solid rgba(201,168,76,0.25); padding-left: 16px; }
+        .reliquia-meta-label {
+            font: 500 0.5rem/1 'Cinzel', serif; letter-spacing: 0.2em;
+            text-transform: uppercase; color: var(--gold-light); margin-bottom: 3px;
+        }
+        .reliquia-meta-value { font: 400 1rem/1.3 'Cormorant Garamond', serif; color: var(--text-on-dark); }
+
+        /* ---- COLECCION COMPLETA ---- */
+        .coleccion { padding: 120px 32px; position: relative; }
+        .coleccion .section-content { max-width: 1300px; margin: 0 auto; }
+        .coleccion-grid {
+            display: grid; grid-template-columns: repeat(5, 1fr); gap: 3px;
+        }
+        .piedra-card {
+            position: relative; overflow: hidden; cursor: pointer;
+            aspect-ratio: 4/3; background: var(--arena-mid);
+        }
+        .piedra-card img {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: transform 0.7s cubic-bezier(0.25,0,0,1);
+        }
+        .piedra-card:hover img { transform: scale(1.06); }
+        .piedra-card-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(180deg, transparent 55%, rgba(20,18,16,0.75) 100%);
+            opacity: 0; transition: opacity 0.4s;
+            display: flex; flex-direction: column; justify-content: flex-end; padding: 16px;
+        }
+        .piedra-card:hover .piedra-card-overlay { opacity: 1; }
+        .piedra-card-name {
+            font: 400 0.7rem/1.2 'Cinzel', serif; color: white; letter-spacing: 0.1em;
+        }
+        .piedra-card-origin {
+            font: italic 0.8rem/1.3 'Cormorant Garamond', serif; color: var(--gold-light);
+        }
+
+        /* ---- TAGLINE ---- */
+        .tagline { padding: 88px 32px; text-align: center; position: relative; }
+        .tagline .section-content { max-width: 640px; margin: 0 auto; }
+        .tagline-text {
+            font: italic 400 clamp(1.2rem,2.2vw,1.5rem)/1.7 'Cormorant Garamond', serif;
+            color: var(--text-secondary);
+        }
+
+        /* ---- CROMATICAS ---- */
+        .cromaticas { padding: 120px 32px; position: relative; }
+        .cromaticas .section-content { max-width: 1000px; margin: 0 auto; }
+        .colores-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 24px; }
+        .color-card { text-align: center; cursor: pointer; transition: transform 0.4s; }
+        .color-card:hover { transform: translateY(-6px); }
+        .color-orb {
+            width: 100px; height: 100px; border-radius: 50%; margin: 0 auto 16px;
+            overflow: hidden; border: 1px solid rgba(201,168,76,0.2);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.35), inset 0 0 20px rgba(0,0,0,0.15);
+        }
+        .color-orb img { width: 100%; height: 100%; object-fit: cover; }
+        .color-name { font: 400 0.65rem/1 'Cinzel', serif; color: var(--text-on-dark); letter-spacing: 0.12em; }
+        .color-count { font: italic 0.8rem/1 'Cormorant Garamond', serif; color: var(--text-on-dark-sub); margin-top: 3px; }
+
+        /* ---- RAREZAS — MAPA INTERACTIVO ---- */
+        .rarezas { padding: 120px 32px; position: relative; }
+        .rarezas .section-content { max-width: 1200px; margin: 0 auto; }
+        .mapa-wrap { position: relative; margin-top: 30px; }
+        .mapa-wrap img { width: 100%; height: auto; display: block; border-radius: 4px; }
+
+        .mapa-dot {
+            position: absolute; cursor: pointer; z-index: 5;
+            transform: translate(-50%, -50%);
+        }
+        .mapa-dot .dot-core {
+            width: 10px; height: 10px; border-radius: 50%;
+            background: var(--gold-light);
+            box-shadow: 0 0 8px rgba(201,168,76,0.5);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .mapa-dot:hover .dot-core {
+            transform: scale(1.4);
+            box-shadow: 0 0 16px rgba(201,168,76,0.8);
+        }
+        .mapa-dot .dot-pulse {
+            position: absolute; top: 50%; left: 50%;
+            width: 10px; height: 10px; border-radius: 50%;
+            transform: translate(-50%, -50%);
+            border: 1.5px solid var(--gold-light);
+            opacity: 0; animation: dotPulse 3s ease-out infinite;
+        }
+        .mapa-dot:nth-child(odd) .dot-pulse { animation-delay: 0.5s; }
+        .mapa-dot:nth-child(3n) .dot-pulse { animation-delay: 1.2s; }
+        @keyframes dotPulse {
+            0% { width: 10px; height: 10px; opacity: 0.6; }
+            100% { width: 40px; height: 40px; opacity: 0; }
+        }
+        .mapa-dot .dot-label {
+            position: absolute; bottom: calc(100% + 6px); left: 50%;
+            transform: translateX(-50%); white-space: nowrap;
+            font: 500 0.5rem/1 'Cinzel', serif; color: var(--gold-light);
+            letter-spacing: 0.1em; text-transform: uppercase;
+            opacity: 0; transition: opacity 0.3s; pointer-events: none;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.8);
+        }
+        .mapa-dot:hover .dot-label { opacity: 1; }
+        .mapa-dot.active .dot-core {
+            transform: scale(1.4);
+            box-shadow: 0 0 16px rgba(201,168,76,0.8);
+        }
+        .mapa-dot.active .dot-label { opacity: 1; }
+
+        /* Tooltip */
+        .mapa-tooltip {
+            position: absolute; display: none; z-index: 20;
+            background: rgba(20,18,16,0.95); backdrop-filter: blur(12px);
+            border: 1px solid rgba(201,168,76,0.25);
+            padding: 0; min-width: 240px; max-width: 300px;
+            pointer-events: none;
+            box-shadow: 0 16px 48px rgba(0,0,0,0.5);
+            border-radius: 4px;
+        }
+        .mapa-tooltip.active { display: block; pointer-events: auto; }
+        .mapa-tooltip-header {
+            padding: 14px 18px 10px;
+            border-bottom: 1px solid rgba(201,168,76,0.1);
+        }
+        .mapa-tooltip-region {
+            font: 500 0.55rem/1 'Cinzel', serif; letter-spacing: 0.2em;
+            text-transform: uppercase; color: var(--gold-light); margin-bottom: 4px;
+        }
+        .mapa-tooltip-count {
+            font: italic 0.85rem/1 'Cormorant Garamond', serif; color: var(--text-on-dark-sub);
+        }
+        .mapa-tooltip-stones {
+            padding: 12px 18px 16px; display: flex; flex-direction: column; gap: 10px;
+            max-height: 280px; overflow-y: auto;
+        }
+        .mapa-tooltip-stone {
+            display: flex; align-items: center; gap: 12px;
+        }
+        .mapa-tooltip-stone img {
+            width: 48px; height: 48px; border-radius: 50%; object-fit: cover;
+            border: 1px solid rgba(201,168,76,0.2); flex-shrink: 0;
+        }
+        .mapa-tooltip-stone-name {
+            font: 400 0.7rem/1.2 'Cinzel', serif; color: var(--text-on-dark); letter-spacing: 0.06em;
+        }
+        .mapa-tooltip-stone-detail {
+            font: italic 0.8rem/1 'Cormorant Garamond', serif; color: var(--text-on-dark-sub);
+        }
+
+        /* ---- ALQUIMIA ---- */
+        .alquimia { padding: 120px 32px; position: relative; }
+        .alquimia .section-content { max-width: 1100px; margin: 0 auto; }
+        .kits-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .kit-card {
+            background: rgba(245,237,227,0.6); backdrop-filter: blur(12px);
+            padding: 48px 32px; text-align: center; transition: all 0.4s;
+            border: 1px solid rgba(184,149,46,0.1);
+        }
+        .kit-card:hover { background: rgba(245,237,227,0.8); box-shadow: 0 12px 48px rgba(0,0,0,0.08); }
+        .kit-glyph { font-size: 2.2rem; color: var(--gold); margin-bottom: 24px; display: block; }
+        .kit-name {
+            font: 500 1rem/1 'Cinzel', serif; letter-spacing: 0.12em; margin-bottom: 14px;
+            text-transform: uppercase;
+        }
+        .kit-desc {
+            font: italic 1.05rem/1.6 'Cormorant Garamond', serif;
+            color: var(--text-secondary); margin-bottom: 24px;
+        }
+        .kit-piedras { display: flex; justify-content: center; gap: 10px; margin-bottom: 24px; }
+        .kit-piedra-thumb {
+            width: 72px; height: 72px; border-radius: 50%; object-fit: cover;
+            border: 2px solid rgba(184,149,46,0.2); box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+            transition: transform 0.3s;
+        }
+        .kit-piedra-thumb:hover { transform: scale(1.1); }
+        .kit-price {
+            font: 500 1rem/1 'Cinzel', serif; color: var(--gold); letter-spacing: 0.06em;
+            margin-bottom: 24px; display: block;
+        }
+        .kit-price-old {
+            text-decoration: line-through; color: var(--text-tertiary);
+            font-size: 0.8rem; margin-right: 10px; font-family: 'Inter', sans-serif;
+        }
+        .kit-btn {
+            display: inline-block; font: 500 0.55rem/1 'Cinzel', serif;
+            letter-spacing: 0.2em; text-transform: uppercase;
+            color: var(--dark); background: var(--gold-light);
+            border: none; padding: 13px 32px; cursor: pointer;
+            transition: all 0.4s;
+        }
+        .kit-btn:hover { background: var(--gold); box-shadow: 0 4px 16px rgba(184,149,46,0.25); }
+
+        /* ---- PROCESO ---- */
+        .proceso { padding: 120px 32px; position: relative; }
+        .proceso .section-content { max-width: 960px; margin: 0 auto; }
+        .pasos-grid {
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; position: relative;
+        }
+        .pasos-grid::before {
+            content: ''; position: absolute; top: 28px; left: 12.5%; right: 12.5%;
+            height: 1px; background: linear-gradient(to right, transparent, var(--border-gold), var(--border-gold), transparent);
+        }
+        .paso { text-align: center; padding: 0 16px; }
+        .paso-num {
+            width: 56px; height: 56px; border-radius: 50%; border: 1px solid var(--gold);
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 24px; font: 400 1rem/1 'Cinzel', serif;
+            color: var(--gold); background: var(--arena); position: relative; z-index: 2;
+        }
+        .paso-title {
+            font: 400 0.72rem/1 'Cinzel', serif; letter-spacing: 0.12em;
+            margin-bottom: 10px; text-transform: uppercase;
+        }
+        .paso-desc { font: italic 0.95rem/1.5 'Cormorant Garamond', serif; color: var(--text-tertiary); }
+
+        /* ---- TESTIMONIOS ---- */
+        .testimonios { padding: 120px 32px; position: relative; }
+        .testimonios .section-content { max-width: 1100px; margin: 0 auto; }
+        .testimonios-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+        .testimonio-card { background: rgba(237,229,218,0.06); border: 1px solid rgba(201,168,76,0.1); padding: 36px 28px; }
+        .testimonio-stars { color: var(--gold-light); font-size: 0.7rem; margin-bottom: 20px; letter-spacing: 4px; }
+        .testimonio-text {
+            font: italic 1.05rem/1.7 'Cormorant Garamond', serif;
+            color: var(--text-on-dark); margin-bottom: 24px;
+        }
+        .testimonio-author { display: flex; align-items: center; gap: 14px; }
+        .testimonio-avatar {
+            width: 40px; height: 40px; border-radius: 50%;
+            background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.2);
+            display: flex; align-items: center; justify-content: center;
+            font: 400 0.8rem/1 'Cinzel', serif; color: var(--gold-light);
+        }
+        .testimonio-name { font: 400 0.7rem/1 'Cinzel', serif; color: var(--text-on-dark); letter-spacing: 0.08em; }
+        .testimonio-loc { font: italic 0.8rem/1 'Cormorant Garamond', serif; color: var(--text-on-dark-sub); }
+
+        /* ---- FAQ ---- */
+        .faq { padding: 120px 32px; position: relative; }
+        .faq .section-content { max-width: 720px; margin: 0 auto; }
+        .faq-item { border-bottom: 1px solid rgba(184,149,46,0.12); }
+        .faq-q {
+            width: 100%; background: none; border: none; padding: 28px 0;
+            font: 400 0.78rem/1.2 'Cinzel', serif; color: var(--text-primary);
+            text-align: left; cursor: pointer; display: flex;
+            justify-content: space-between; align-items: center; letter-spacing: 0.04em;
+            transition: color 0.3s;
+        }
+        .faq-q:hover { color: var(--gold); }
+        .faq-arrow { font-size: 1.1rem; color: var(--gold); transition: transform 0.3s; font-weight: 300; }
+        .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+        .faq-a p {
+            padding-bottom: 28px; font: italic 1rem/1.8 'Cormorant Garamond', serif; color: var(--text-secondary);
+        }
+        .faq-item.active .faq-a { max-height: 300px; }
+        .faq-item.active .faq-arrow { transform: rotate(45deg); }
+
+        /* ---- NEWSLETTER ---- */
+        .newsletter { padding: 100px 32px; position: relative; }
+        .newsletter .section-content { max-width: 520px; margin: 0 auto; text-align: center; }
+        .nl-form { display: flex; gap: 0; margin-top: 36px; }
+        .nl-input {
+            flex: 1; padding: 15px 20px; font: italic 0.95rem/1 'Cormorant Garamond', serif;
+            border: 1px solid rgba(201,168,76,0.3); border-right: none;
+            background: rgba(255,255,255,0.04); color: var(--text-on-dark); outline: none;
+        }
+        .nl-input::placeholder { color: var(--text-on-dark-sub); }
+        .nl-btn {
+            padding: 15px 28px; font: 500 0.55rem/1 'Cinzel', serif; letter-spacing: 0.2em;
+            text-transform: uppercase; background: var(--gold-light); color: var(--dark);
+            border: 1px solid var(--gold-light); cursor: pointer; transition: background 0.3s;
+        }
+        .nl-btn:hover { background: var(--gold); }
+
+        /* ---- FOOTER ---- */
+        .footer { background: var(--dark); padding: 64px 32px 28px; border-top: 1px solid rgba(201,168,76,0.08); }
+        .footer-inner {
+            max-width: 1100px; margin: 0 auto;
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px;
+            padding-bottom: 48px; border-bottom: 1px solid rgba(201,168,76,0.08);
+        }
+        .footer-col h4 {
+            font: 500 0.55rem/1 'Cinzel', serif; letter-spacing: 0.25em;
+            text-transform: uppercase; color: var(--gold-light); margin-bottom: 20px;
+        }
+        .footer-col a, .footer-col p {
+            display: block; font: italic 0.95rem/1.4 'Cormorant Garamond', serif;
+            color: var(--text-on-dark-sub); margin-bottom: 10px; transition: color 0.3s;
+        }
+        .footer-col a:hover { color: var(--gold-light); }
+        .footer-bottom { max-width: 1100px; margin: 0 auto; padding-top: 28px; text-align: center; }
+        .footer-bottom-logo {
+            font: 500 0.6rem/1 'Cinzel', serif; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 8px;
+        }
+        .footer-bottom p { font-size: 0.65rem; color: var(--text-on-dark-sub); letter-spacing: 0.05em; }
+
+        /* ---- RESPONSIVE ---- */
+        @media (max-width: 1024px) {
+            .coleccion-grid { grid-template-columns: repeat(4, 1fr); }
+            .colores-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .header-nav { display: none; }
+            .header-main { padding: 12px 20px; }
+            .trust-bar .section-content { grid-template-columns: repeat(2, 1fr); }
+            .trust-item:not(:last-child)::after { display: none; }
+            .reliquia-grid { grid-template-columns: 1fr; gap: 48px; }
+            .coleccion-grid { grid-template-columns: repeat(3, 1fr); }
+            .colores-grid { grid-template-columns: repeat(3, 1fr); }
+            .mapa-dot .dot-core { width: 8px; height: 8px; }
+            .mapa-dot .dot-label { font-size: 0.4rem; }
+            .kits-grid { grid-template-columns: 1fr; }
+            .pasos-grid { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+            .pasos-grid::before { display: none; }
+            .testimonios-grid { grid-template-columns: 1fr; }
+            .footer-inner { grid-template-columns: 1fr; gap: 32px; }
+            .nl-form { flex-direction: column; }
+            .nl-input { border-right: 1px solid rgba(201,168,76,0.3); }
+        }
+        @media (max-width: 480px) {
+            .trust-bar .section-content { grid-template-columns: 1fr; }
+            .coleccion-grid { grid-template-columns: repeat(2, 1fr); }
+            .pasos-grid { grid-template-columns: 1fr; }
+            .colores-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+    <div class="header-top">&#x13079; Cada pieza es unica &middot; &#x13143; Autenticidad verificada &middot; &#x13080; Envios protegidos a todo Chile</div>
+    <div class="header-main">
+        <a href="#" class="header-logo">
+            <img src="../img/brand-v2/ojo-horus-arena.jpg" alt="Brujo Egipcio">
+            <span>BRUJO EGIPCIO</span>
+        </a>
+        <nav class="header-nav">
+            <a href="#coleccion">Coleccion</a>
+            <a href="#cromaticas">Energias</a>
+            <a href="#rarezas">Rarezas</a>
+            <a href="#alquimia">Alquimia</a>
+            <a href="#contacto">Contacto</a>
+        </nav>
+        <div class="header-icons">
+            <button class="header-icon">&#128269;</button>
+            <button class="header-icon">&#9825;</button>
+            <button class="header-icon">&#128722;</button>
+        </div>
+    </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+        <img src="../img/brand-v2/ojo-horus-arena.jpg" alt="Ojo de Horus" class="hero-logo">
+        <h1>Piezas Unicas.<br><em>Energia Real.</em></h1>
+        <p class="hero-tagline">Curatoria premium de reliquias ancestrales</p>
+        <a href="#coleccion" class="hero-cta">Explorar Coleccion</a>
+    </div>
+    <div class="hero-scroll"><div class="line"></div></div>
+</section>
+
+<!-- 1. INFORMACION GENERAL -->
+<section class="trust-bar section-bg" style="background-image:url('../img/fondos/arena-minimal.jpg')">
+    <div class="section-overlay" style="background:rgba(245,237,227,0.82)"></div>
+    <div class="section-content">
+        <div class="trust-item">
+            <span class="trust-glyph">&#x13193;</span>
+            <div class="trust-label">Piezas Unicas</div>
+            <div class="trust-sub">Cada gema es irrepetible</div>
+        </div>
+        <div class="trust-item">
+            <span class="trust-glyph">&#x13080;</span>
+            <div class="trust-label">Autenticidad Verificada</div>
+            <div class="trust-sub">Certificada en origen</div>
+        </div>
+        <div class="trust-item">
+            <span class="trust-glyph">&#x1335D;</span>
+            <div class="trust-label">Envio Protegido</div>
+            <div class="trust-sub">Embalaje premium a todo Chile</div>
+        </div>
+        <div class="trust-item">
+            <span class="trust-glyph">&#x13143;</span>
+            <div class="trust-label">+300 Coleccionistas</div>
+            <div class="trust-sub">Confian en Brujo Egipcio</div>
+        </div>
+    </div>
+</section>
+
+<!-- 2. RELIQUIA — PIEDRA DEL MES -->
+<section class="reliquia section-bg" style="background-image:url('../img/fondos/oscuro-mineral.jpg')">
+    <div class="section-overlay" style="background:rgba(20,18,16,0.6)"></div>
+    <div class="section-content">
+        <div class="sh">
+            <span class="sh-over on-dark">&#x13079; Reliquia del Mes</span>
+            <h2 class="sh-title" style="color:var(--text-on-dark)">Piedra de <span class="a">Aries</span></h2>
+            <div class="egyptian-divider"><span class="g">&#x13080;</span></div>
+            <p class="sh-sub" style="color:var(--text-on-dark-sub)">Abril 2026</p>
+        </div>
+        <div class="reliquia-grid">
+            <div class="reliquia-img-wrap">
+                <div class="reliquia-img-glow"></div>
+                <img src="../img/coleccion/Cuarzo Rutilado Dorado.jpg" alt="Cuarzo Rutilado Dorado">
+            </div>
+            <div class="reliquia-info">
+                <span class="reliquia-badge">&#x13080; Pieza del Mes</span>
+                <h3 class="reliquia-name">Cuarzo Rutilado Dorado</h3>
+                <p class="reliquia-origin">Brasil &middot; Minas Gerais</p>
+                <p class="reliquia-desc">Agujas doradas de rutilo atrapadas dentro del cuarzo transparente. Cada aguja es un camino de luz fosilizado hace millones de anos. Una reliquia para quienes buscan claridad y poder interior.</p>
+                <div class="reliquia-meta">
+                    <div class="reliquia-meta-item">
+                        <div class="reliquia-meta-label">Rareza</div>
+                        <div class="reliquia-meta-value">Unica en su tipo</div>
+                    </div>
+                    <div class="reliquia-meta-item">
+                        <div class="reliquia-meta-label">Tamano</div>
+                        <div class="reliquia-meta-value">6.5 cm aprox</div>
+                    </div>
+                    <div class="reliquia-meta-item">
+                        <div class="reliquia-meta-label">Composicion</div>
+                        <div class="reliquia-meta-value">SiO&#8322; + TiO&#8322;</div>
+                    </div>
+                    <div class="reliquia-meta-item">
+                        <div class="reliquia-meta-label">Dureza</div>
+                        <div class="reliquia-meta-value">7 Mohs</div>
+                    </div>
+                </div>
+                <button class="btn-g">Ver Reliquia</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- NUESTRA COLECCION — 30 piedras reales -->
+<section class="coleccion section-bg" id="coleccion" style="background-image:url('../img/fondos/piedra-clara.jpg')">
+    <div class="section-overlay" style="background:rgba(245,237,227,0.78)"></div>
+    <div class="section-content">
+        <div class="sh">
+            <span class="sh-over">&#x13079; 30 piezas curadas</span>
+            <h2 class="sh-title">Nuestra <span class="a">Coleccion</span></h2>
+            <div class="egyptian-divider"><span class="g">&#x1335D;</span></div>
+            <p class="sh-sub">Curamos energia, historia y rareza</p>
+        </div>
+        <div class="coleccion-grid">
+            <div class="piedra-card"><img src="../img/coleccion/Amazonita.png" alt="Amazonita" loading="lazy"><div class="piedra-card-overlay"><div class="piedra-card-name">Amazonita</div><div class="piedra-card-origin">Brasil</div></div></div>
+            <div class="piedra-card"><img src="../img/coleccion/Apatita Azul.png" alt="Apatita Azul" loading="lazy"><div class="piedra-card-overlay"><div class="piedra-card-name">Apatita Azul</div><div class="piedra-card-origin">Madagascar</div></div></div>
+            <div class="piedra-card"><img src="../img/coleccion/Aragonita Beige.png" alt="Aragonita Beige" loading="lazy"><div class="piedra-card-overlay"><div class="piedra-card-name">Aragonita Beige</div><div class="piedra-card-origin">Espana</div></div></div>
+            <div class="piedra-card"><img src="../img/coleccion/Atlantisita.png" alt="Atlantisita" loading="lazy"><div class="piedra-card-overlay"><div class="piedra-card-name">Atlantisita</div><div class="piedra-card-origin">Australia</div></div></div>
+            <div class="piedra-card"><img src="../img/coleccion/Azurita.png" alt="Azurita" loading="lazy"><div class="piedra-card-overlay"><div class="piedra-card-name">Azurita</div><div class="piedra-card-origin">Marruecos</div></div></div>
+            <div class="piedra-card"><img src="../img/coleccion/Bolivianita.png" alt="Bolivianita" loading="lazy"><div class="piedra-card-overlay"><div class="piedra-card-name">Bolivianita</div><div class="piedra-card-origin">Bolivia</div></div></div>
+            <div class="piedra-card"><img src="../img/coleccion/Calcita Caribe.png" alt="Calcita Caribe" loading="lazy"><div class="piedra-card-overlay"><div class="piedra-card-name">Calcita Caribe</div><div class="piedra-card-origin">Mexico</div></div></div>
+            <div class="piedra-card"><img src="../img/coleccion/Calcopirita.jpg" alt="Calcopirita" loading="lazy"><div class="piedra-card-overlay"><div class="piedra-card-name">Calcopirita</div><div class="piedra-card-origin">Peru</div></div></div>
+            <div class="piedra-card"><img src="../img/coleccion/Charoita.jpg" alt="Charoita" loading="lazy"><div class="piedra-card-overlay"><div class="piedra-card-name">Charoita</div><div class="piedra-card-origin">Rusia</div></div></div>
+            <div class="piedra-card"><img src="../img/coleccion/Cianita Azul.jpg" alt="Cianita Azul" loading="lazy"><div class="piedra-card-overlay"><div class="piedra-card-name">Cianita Azul</div><div class="piedra-card-origin">Brasil</div></div></div>
+            <div class="piedra-card"><img src="../img/coleccion/Cobaltocalcita.jpg" alt="Cobaltocalcita" loading="lazy"><div class="piedra-card-overlay"><div class="piedra-card-name">Cobaltocalcita</div><div class="piedra-card-origin">Congo</div></div></div>
+            <div class="piedra-card"><img src="../img/coleccion/Crisocola.jpg" alt="Crisocola" loading="lazy"><div class="piedra-card-overlay"><div class="piedra-card-name">Crisocola</div><div class="piedra-card-origin">Peru</div></div></div>
+            <div class="piedra-card"><img src="../img/coleccion/Crisoprasa.jpg" alt="Crisoprasa" loading="lazy"><div class="piedra-card-overlay"><div class="piedra-card-name">Crisoprasa</div><div class="piedra-card-origin">Australia</div></div></div>
+            <div class="piedra-card"><img src="../img/coleccion/Cuarzo Hematoide.jpg" alt="Cuarzo Hematoide" loading="lazy"><div class="piedra-card-overlay"><div class="piedra-card-name">Cuarzo Hematoide</div><div class="piedra-card-origin">Brasil</div></div></div>
+            <div class="piedra-card"><img src="../img/coleccion/Cuarzo Rutilado Dorado.jpg" alt="Cuarzo Rutilado Dorado" loading="lazy"><div class="piedra-card-overlay"><div class="piedra-card-name">Cuarzo Rutilado Dorado</div><div class="piedra-card-origin">Brasil</div></div></div>
+            <div class="piedra-card"><img src="../img/coleccion/Cuarzo Rutilado Plateado.jpg" alt="Cuarzo Rutilado Plateado" loading="lazy"><div class="piedra-card-overlay"><div class="piedra-card-name">Cuarzo Rutilado Plateado</div><div class="piedra-card-origin">Brasil</div></div></div>
+            <div class="piedra-card"><img src="../img/coleccion/Esmeralda en matriz.jpg" alt="Esmeralda en Matriz" loading="lazy"><div class="piedra-card-overlay"><div class="piedra-card-name">Esmeralda en Matriz</div><div class="piedra-card-origin">Colombia</div></div></div>
+            <div class="piedra-card"><img src="../img/coleccion/Fluorita Arcoiris.jpg" alt="Fluorita Arcoiris" loading="lazy"><div class="piedra-card-overlay"><div class="piedra-card-name">Fluorita Arcoiris</div><div class="piedra-card-origin">China</div></div></div>
+            <div class="piedra-card"><img src="../img/coleccion/Fosfosiderita.jpg" alt="Fosfosiderita" loading="lazy"><div class="piedra-card-overlay"><div class="piedra-card-name">Fosfosiderita</div><div class="piedra-card-origin">Chile</div></div></div>
+            <div class="piedra-card"><img src="../img/coleccion/Fucsita con Rubi.jpg" alt="Fucsita con Rubi" loading="lazy"><div class="piedra-card-overlay"><div class="piedra-card-name">Fucsita con Rubi</div><div class="piedra-card-origin">India</div></div></div>
+            <div class="piedra-card"><img src="../img/coleccion/Granate.jpg" alt="Granate" loading="lazy"><div class="piedra-card-overlay"><div class="piedra-card-name">Granate</div><div class="piedra-card-origin">India</div></div></div>
+            <div class="piedra-card"><img src="../img/coleccion/Iolita.jpg" alt="Iolita" loading="lazy"><div class="piedra-card-overlay"><div class="piedra-card-name">Iolita</div><div class="piedra-card-origin">India</div></div></div>
+            <div class="piedra-card"><img src="../img/coleccion/Jaspe Abejorro.jpg" alt="Jaspe Abejorro" loading="lazy"><div class="piedra-card-overlay"><div class="piedra-card-name">Jaspe Abejorro</div><div class="piedra-card-origin">Indonesia</div></div></div>
+            <div class="piedra-card"><img src="../img/coleccion/Jaspe Imperial Rojo.jpg" alt="Jaspe Imperial Rojo" loading="lazy"><div class="piedra-card-overlay"><div class="piedra-card-name">Jaspe Imperial Rojo</div><div class="piedra-card-origin">Mexico</div></div></div>
+            <div class="piedra-card"><img src="../img/coleccion/Jaspe Oceano.jpg" alt="Jaspe Oceano" loading="lazy"><div class="piedra-card-overlay"><div class="piedra-card-name">Jaspe Oceano</div><div class="piedra-card-origin">Madagascar</div></div></div>
+            <div class="piedra-card"><img src="../img/coleccion/K2.jpg" alt="K2" loading="lazy"><div class="piedra-card-overlay"><div class="piedra-card-name">K2</div><div class="piedra-card-origin">Pakistan</div></div></div>
+            <div class="piedra-card"><img src="../img/coleccion/Labradorita.jpg" alt="Labradorita" loading="lazy"><div class="piedra-card-overlay"><div class="piedra-card-name">Labradorita</div><div class="piedra-card-origin">Madagascar</div></div></div>
+            <div class="piedra-card"><img src="../img/coleccion/Labradorita Blanca.jpg" alt="Labradorita Blanca" loading="lazy"><div class="piedra-card-overlay"><div class="piedra-card-name">Labradorita Blanca</div><div class="piedra-card-origin">Madagascar</div></div></div>
+            <div class="piedra-card"><img src="../img/coleccion/Lapislazuli.jpg" alt="Lapislazuli" loading="lazy"><div class="piedra-card-overlay"><div class="piedra-card-name">Lapislazuli</div><div class="piedra-card-origin">Afganistan</div></div></div>
+            <div class="piedra-card"><img src="../img/coleccion/Larimar.jpg" alt="Larimar" loading="lazy"><div class="piedra-card-overlay"><div class="piedra-card-name">Larimar</div><div class="piedra-card-origin">Rep. Dominicana</div></div></div>
+        </div>
+    </div>
+</section>
+
+<!-- TAGLINE -->
+<section class="tagline section-bg" style="background-image:url('../img/fondos/arena-dorado.jpg')">
+    <div class="section-overlay" style="background:rgba(245,237,227,0.65)"></div>
+    <div class="section-content">
+        <p class="tagline-text">Brujo Egipcio, coleccionista de reliquias ancestrales para quienes buscan el poder y la energia de la magia egipcia encapsulada en minerales unicos del planeta.</p>
+        <div class="egyptian-divider" style="margin-top:28px"><span class="g">&#x13079;</span></div>
+        <br>
+        <button class="btn-o">Sobre Brujo Egipcio</button>
+    </div>
+</section>
+
+<!-- 3. ENERGIAS CROMATICAS -->
+<section class="cromaticas section-bg" id="cromaticas" style="background-image:url('../img/fondos/oscuro-profundo.jpg')">
+    <div class="section-overlay" style="background:rgba(10,8,6,0.75)"></div>
+    <div class="section-content">
+        <div class="sh">
+            <span class="sh-over on-dark">&#x13193; El color revela la energia</span>
+            <h2 class="sh-title" style="color:var(--text-on-dark)">Energias <span class="a">Cromaticas</span></h2>
+            <div class="egyptian-divider"><span class="g" style="color:var(--gold-light)">&#x13080;</span></div>
+        </div>
+        <div class="colores-grid">
+            <div class="color-card">
+                <div class="color-orb"><img src="../img/coleccion/Cobaltocalcita.jpg" alt="Rosa" loading="lazy"></div>
+                <div class="color-name">Rosa</div><div class="color-count">3 piedras</div>
+            </div>
+            <div class="color-card">
+                <div class="color-orb"><img src="../img/coleccion/Lapislazuli.jpg" alt="Azul" loading="lazy"></div>
+                <div class="color-name">Azul</div><div class="color-count">7 piedras</div>
+            </div>
+            <div class="color-card">
+                <div class="color-orb"><img src="../img/coleccion/Amazonita.png" alt="Verde" loading="lazy"></div>
+                <div class="color-name">Verde</div><div class="color-count">5 piedras</div>
+            </div>
+            <div class="color-card">
+                <div class="color-orb"><img src="../img/coleccion/Charoita.jpg" alt="Violeta" loading="lazy"></div>
+                <div class="color-name">Violeta</div><div class="color-count">4 piedras</div>
+            </div>
+            <div class="color-card">
+                <div class="color-orb"><img src="../img/coleccion/Cuarzo Rutilado Dorado.jpg" alt="Dorado" loading="lazy"></div>
+                <div class="color-name">Dorado</div><div class="color-count">6 piedras</div>
+            </div>
+            <div class="color-card">
+                <div class="color-orb"><img src="../img/coleccion/Labradorita.jpg" alt="Negro" loading="lazy"></div>
+                <div class="color-name">Oscuro</div><div class="color-count">5 piedras</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 4. RAREZAS DEL MUNDO — MAPA INTERACTIVO -->
+<section class="rarezas section-bg" id="rarezas" style="background-image:url('../img/fondos/oscuro-profundo.jpg')">
+    <div class="section-overlay" style="background:rgba(10,8,6,0.8)"></div>
+    <div class="section-content">
+        <div class="sh">
+            <span class="sh-over on-dark">&#x13079; Sala de expedicion</span>
+            <h2 class="sh-title" style="color:var(--text-on-dark)">Rarezas del <span class="a">Mundo</span></h2>
+            <div class="egyptian-divider"><span class="g" style="color:var(--gold-light)">&#x1335D;</span></div>
+            <p class="sh-sub" style="color:var(--text-on-dark-sub)">18 origenes &middot; 30 reliquias &middot; Haz click en cada punto</p>
+        </div>
+        <div class="mapa-wrap">
+            <img src="../img/brand-v2/mapa-piedra.png" alt="Mapa del mundo — origenes de las piedras">
+
+            <!-- 18 puntos de origen -->
+            <div class="mapa-dot" data-region="brasil" style="left:27%;top:62%">
+                <div class="dot-pulse"></div><div class="dot-core"></div>
+                <span class="dot-label">Brasil</span>
+            </div>
+            <div class="mapa-dot" data-region="peru" style="left:21%;top:56%">
+                <div class="dot-pulse"></div><div class="dot-core"></div>
+                <span class="dot-label">Perú</span>
+            </div>
+            <div class="mapa-dot" data-region="bolivia" style="left:24%;top:63%">
+                <div class="dot-pulse"></div><div class="dot-core"></div>
+                <span class="dot-label">Bolivia</span>
+            </div>
+            <div class="mapa-dot" data-region="colombia" style="left:21%;top:48%">
+                <div class="dot-pulse"></div><div class="dot-core"></div>
+                <span class="dot-label">Colombia</span>
+            </div>
+            <div class="mapa-dot" data-region="chile" style="left:22.5%;top:74%">
+                <div class="dot-pulse"></div><div class="dot-core"></div>
+                <span class="dot-label">Chile</span>
+            </div>
+            <div class="mapa-dot" data-region="mexico" style="left:14%;top:38%">
+                <div class="dot-pulse"></div><div class="dot-core"></div>
+                <span class="dot-label">México</span>
+            </div>
+            <div class="mapa-dot" data-region="dominicana" style="left:22%;top:40%">
+                <div class="dot-pulse"></div><div class="dot-core"></div>
+                <span class="dot-label">R. Dominicana</span>
+            </div>
+            <div class="mapa-dot" data-region="espana" style="left:42%;top:26%">
+                <div class="dot-pulse"></div><div class="dot-core"></div>
+                <span class="dot-label">España</span>
+            </div>
+            <div class="mapa-dot" data-region="marruecos" style="left:40%;top:34%">
+                <div class="dot-pulse"></div><div class="dot-core"></div>
+                <span class="dot-label">Marruecos</span>
+            </div>
+            <div class="mapa-dot" data-region="congo" style="left:48%;top:56%">
+                <div class="dot-pulse"></div><div class="dot-core"></div>
+                <span class="dot-label">Congo</span>
+            </div>
+            <div class="mapa-dot" data-region="madagascar" style="left:56%;top:65%">
+                <div class="dot-pulse"></div><div class="dot-core"></div>
+                <span class="dot-label">Madagascar</span>
+            </div>
+            <div class="mapa-dot" data-region="india" style="left:65%;top:40%">
+                <div class="dot-pulse"></div><div class="dot-core"></div>
+                <span class="dot-label">India</span>
+            </div>
+            <div class="mapa-dot" data-region="pakistan" style="left:63%;top:32%">
+                <div class="dot-pulse"></div><div class="dot-core"></div>
+                <span class="dot-label">Pakistán</span>
+            </div>
+            <div class="mapa-dot" data-region="afganistan" style="left:61%;top:30%">
+                <div class="dot-pulse"></div><div class="dot-core"></div>
+                <span class="dot-label">Afganistán</span>
+            </div>
+            <div class="mapa-dot" data-region="rusia" style="left:74%;top:15%">
+                <div class="dot-pulse"></div><div class="dot-core"></div>
+                <span class="dot-label">Rusia</span>
+            </div>
+            <div class="mapa-dot" data-region="china" style="left:72%;top:32%">
+                <div class="dot-pulse"></div><div class="dot-core"></div>
+                <span class="dot-label">China</span>
+            </div>
+            <div class="mapa-dot" data-region="indonesia" style="left:77%;top:55%">
+                <div class="dot-pulse"></div><div class="dot-core"></div>
+                <span class="dot-label">Indonesia</span>
+            </div>
+            <div class="mapa-dot" data-region="australia" style="left:84%;top:73%">
+                <div class="dot-pulse"></div><div class="dot-core"></div>
+                <span class="dot-label">Australia</span>
+            </div>
+
+            <!-- Tooltip flotante -->
+            <div class="mapa-tooltip" id="mapaTooltip">
+                <div class="mapa-tooltip-header">
+                    <div class="mapa-tooltip-region" id="tooltipRegion"></div>
+                    <div class="mapa-tooltip-count" id="tooltipCount"></div>
+                </div>
+                <div class="mapa-tooltip-stones" id="tooltipStones"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 5. ALQUIMIA SAGRADA -->
+<section class="alquimia section-bg" id="alquimia" style="background-image:url('../img/fondos/arena-dorado.jpg')">
+    <div class="section-overlay" style="background:rgba(245,237,227,0.65)"></div>
+    <div class="section-content">
+        <div class="sh">
+            <span class="sh-over">&#x13143; Kits por intencion</span>
+            <h2 class="sh-title">Alquimia <span class="a">Sagrada</span></h2>
+            <div class="egyptian-divider"><span class="g">&#x13080;</span></div>
+            <p class="sh-sub">Combinaciones curadas con descuento especial</p>
+        </div>
+        <div class="kits-grid">
+            <div class="kit-card">
+                <span class="kit-glyph">&#x13193;</span>
+                <h3 class="kit-name">Proteccion</h3>
+                <p class="kit-desc">Escudo energetico ancestral. Tres piedras guardianas para el hogar y el alma.</p>
+                <div class="kit-piedras">
+                    <img class="kit-piedra-thumb" src="../img/coleccion/Labradorita.jpg" alt="Labradorita" loading="lazy">
+                    <img class="kit-piedra-thumb" src="../img/coleccion/Granate.jpg" alt="Granate" loading="lazy">
+                    <img class="kit-piedra-thumb" src="../img/coleccion/K2.jpg" alt="K2" loading="lazy">
+                </div>
+                <div class="kit-price"><span class="kit-price-old">$45.000</span> $38.000</div>
+                <button class="kit-btn">Agregar al Carrito</button>
+            </div>
+            <div class="kit-card">
+                <span class="kit-glyph">&#x13079;</span>
+                <h3 class="kit-name">Amor</h3>
+                <p class="kit-desc">Atrae y fortalece el amor en todas sus formas. Tres piedras del corazon.</p>
+                <div class="kit-piedras">
+                    <img class="kit-piedra-thumb" src="../img/coleccion/Cobaltocalcita.jpg" alt="Cobaltocalcita" loading="lazy">
+                    <img class="kit-piedra-thumb" src="../img/coleccion/Fosfosiderita.jpg" alt="Fosfosiderita" loading="lazy">
+                    <img class="kit-piedra-thumb" src="../img/coleccion/Amazonita.png" alt="Amazonita" loading="lazy">
+                </div>
+                <div class="kit-price"><span class="kit-price-old">$42.000</span> $35.000</div>
+                <button class="kit-btn">Agregar al Carrito</button>
+            </div>
+            <div class="kit-card">
+                <span class="kit-glyph">&#x13080;</span>
+                <h3 class="kit-name">Prosperidad</h3>
+                <p class="kit-desc">Abundancia y flujo de energia positiva. Tres gemas del exito.</p>
+                <div class="kit-piedras">
+                    <img class="kit-piedra-thumb" src="../img/coleccion/Calcopirita.jpg" alt="Calcopirita" loading="lazy">
+                    <img class="kit-piedra-thumb" src="../img/coleccion/Cuarzo Rutilado Dorado.jpg" alt="Cuarzo Rutilado Dorado" loading="lazy">
+                    <img class="kit-piedra-thumb" src="../img/coleccion/Cuarzo Hematoide.jpg" alt="Cuarzo Hematoide" loading="lazy">
+                </div>
+                <div class="kit-price"><span class="kit-price-old">$50.000</span> $42.000</div>
+                <button class="kit-btn">Agregar al Carrito</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 6. PROCESO DE COMPRA -->
+<section class="proceso section-bg" id="proceso" style="background-image:url('../img/fondos/piedra-clara.jpg')">
+    <div class="section-overlay" style="background:rgba(245,237,227,0.82)"></div>
+    <div class="section-content">
+        <div class="sh">
+            <span class="sh-over">&#x1335D; Paso a paso</span>
+            <h2 class="sh-title">Proceso de <span class="a">Compra</span></h2>
+            <div class="egyptian-divider"><span class="g">&#x13080;</span></div>
+        </div>
+        <div class="pasos-grid">
+            <div class="paso"><div class="paso-num">I</div><div class="paso-title">Elige</div><div class="paso-desc">Explora la coleccion y encuentra la piedra que resuena contigo</div></div>
+            <div class="paso"><div class="paso-num">II</div><div class="paso-title">Consulta</div><div class="paso-desc">Escribenos por DM en Instagram para confirmar disponibilidad</div></div>
+            <div class="paso"><div class="paso-num">III</div><div class="paso-title">Confirma</div><div class="paso-desc">Reserva tu pieza con transferencia. Te enviamos fotos extras</div></div>
+            <div class="paso"><div class="paso-num">IV</div><div class="paso-title">Recibe</div><div class="paso-desc">Envio protegido con embalaje premium directo a tu puerta</div></div>
+        </div>
+    </div>
+</section>
+
+<!-- 7. TESTIMONIOS -->
+<section class="testimonios section-bg" style="background-image:url('../img/fondos/oscuro-mineral.jpg')">
+    <div class="section-overlay" style="background:rgba(20,18,16,0.65)"></div>
+    <div class="section-content">
+        <div class="sh">
+            <span class="sh-over on-dark">&#x13143; Testimonios</span>
+            <h2 class="sh-title" style="color:var(--text-on-dark)">Testimonios <span class="a">Reales</span></h2>
+            <div class="egyptian-divider"><span class="g" style="color:var(--gold-light)">&#x13079;</span></div>
+        </div>
+        <div class="testimonios-grid">
+            <div class="testimonio-card">
+                <div class="testimonio-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <p class="testimonio-text">"Gracias al Brujo Egipcio recupere a mi pareja en pocos dias. Un verdadero maestro."</p>
+                <div class="testimonio-author"><div class="testimonio-avatar">A</div><div><div class="testimonio-name">Ana S.</div><div class="testimonio-loc">Santiago, Chile</div></div></div>
+            </div>
+            <div class="testimonio-card">
+                <div class="testimonio-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <p class="testimonio-text">"Sus rituales de proteccion me ayudaron a salir adelante en mi negocio. 100% recomendado."</p>
+                <div class="testimonio-author"><div class="testimonio-avatar">C</div><div><div class="testimonio-name">Carlos M.</div><div class="testimonio-loc">Vina del Mar, Chile</div></div></div>
+            </div>
+            <div class="testimonio-card">
+                <div class="testimonio-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <p class="testimonio-text">"Increible lectura de tarot, acerto en todo lo que me dijo. Las piedras llegaron impecables."</p>
+                <div class="testimonio-author"><div class="testimonio-avatar">L</div><div><div class="testimonio-name">Lorena T.</div><div class="testimonio-loc">Concepcion, Chile</div></div></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 8. FAQ -->
+<section class="faq section-bg" style="background-image:url('../img/fondos/piedra-clara.jpg')">
+    <div class="section-overlay" style="background:rgba(245,237,227,0.82)"></div>
+    <div class="section-content">
+        <div class="sh">
+            <span class="sh-over">&#x13079; Resolvemos tus dudas</span>
+            <h2 class="sh-title">Preguntas <span class="a">Frecuentes</span></h2>
+            <div class="egyptian-divider"><span class="g">&#x13080;</span></div>
+        </div>
+        <div class="faq-item"><button class="faq-q">Son piedras naturales y autenticas?<span class="faq-arrow">+</span></button><div class="faq-a"><p>Si, todas nuestras piedras son 100% naturales. Cada pieza viene con certificado de autenticidad que detalla origen, composicion y caracteristicas.</p></div></div>
+        <div class="faq-item"><button class="faq-q">Como es el envio?<span class="faq-arrow">+</span></button><div class="faq-a"><p>Realizamos envios a todo Chile con embalaje premium. Cada piedra viaja protegida individualmente en caja acolchada. Despacho en 1-2 dias habiles.</p></div></div>
+        <div class="faq-item"><button class="faq-q">Puedo ver mas fotos antes de comprar?<span class="faq-arrow">+</span></button><div class="faq-a"><p>Por supuesto. Escribenos por DM en Instagram y te enviamos fotos y videos adicionales. Cada pieza es unica.</p></div></div>
+        <div class="faq-item"><button class="faq-q">Hacen envios fuera de Chile?<span class="faq-arrow">+</span></button><div class="faq-a"><p>Actualmente nuestros envios son dentro de Chile. Para envios internacionales, escribenos por DM y evaluamos caso a caso.</p></div></div>
+        <div class="faq-item"><button class="faq-q">Que metodos de pago aceptan?<span class="faq-arrow">+</span></button><div class="faq-a"><p>Aceptamos transferencia bancaria y pagos via Mercado Pago. Una vez confirmado el pago, preparamos y despachamos tu pedido.</p></div></div>
+    </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter section-bg" style="background-image:url('../img/fondos/oscuro-profundo.jpg')">
+    <div class="section-overlay" style="background:rgba(10,8,6,0.78)"></div>
+    <div class="section-content">
+        <div class="sh">
+            <span class="sh-over on-dark">&#x13080; Novedades</span>
+            <h2 class="sh-title" style="color:var(--text-on-dark)">Recibe <span class="a">Novedades</span></h2>
+            <div class="egyptian-divider"><span class="g" style="color:var(--gold-light)">&#x13079;</span></div>
+            <p class="sh-sub" style="color:var(--text-on-dark-sub)">Se el primero en conocer las piedras recien llegadas</p>
+        </div>
+        <div class="nl-form">
+            <input type="email" class="nl-input" placeholder="Tu correo electronico">
+            <button class="nl-btn">Suscribirse</button>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer" id="contacto">
+    <div class="footer-inner">
+        <div class="footer-col">
+            <h4>Colecciones</h4>
+            <a href="#cromaticas">Energias Cromaticas</a>
+            <a href="#rarezas">Rarezas del Mundo</a>
+            <a href="#alquimia">Alquimia Sagrada</a>
+        </div>
+        <div class="footer-col">
+            <h4>Explorar</h4>
+            <a href="#proceso">Proceso de Compra</a>
+            <a href="#testimonios">Testimonios Reales</a>
+            <a href="#faq">Preguntas Frecuentes</a>
+        </div>
+        <div class="footer-col">
+            <h4>Contacto</h4>
+            <p>contacto@brujoegipcio.cl</p>
+            <a href="https://www.instagram.com/brujoegipcio" target="_blank">@brujoegipcio</a>
+            <p style="margin-top:16px;font-size:0.85rem">"Seleccionamos las piedras mas extraordinarias del mundo para coleccionistas que valoran la autenticidad."</p>
+            <p style="color:var(--gold-light);font-size:0.85rem">— Jaime Spate</p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="footer-bottom-logo">&#x13080; BRUJO EGIPCIO &#x13080;</div>
+        <p>&copy; 2026 Brujo Egipcio. Todos los derechos reservados.</p>
+    </div>
+</footer>
+
+<script>
+/* FAQ Accordion */
+document.querySelectorAll('.faq-q').forEach(b=>{
+    b.addEventListener('click',()=>{
+        const i=b.parentElement,a=i.classList.contains('active');
+        document.querySelectorAll('.faq-item.active').forEach(x=>x.classList.remove('active'));
+        if(!a)i.classList.add('active');
+    });
+});
+
+/* ---- MAPA INTERACTIVO — Rarezas del Mundo ---- */
+(function(){
+    const PIEDRAS_POR_REGION = {
+        brasil: [
+            { nombre: 'Calcita Caribe', img: 'Calcita Caribe.png', detalle: 'Carbonato azul vibrante' },
+            { nombre: 'Cobaltocalcita', img: 'Cobaltocalcita.jpg', detalle: 'Rosa intenso de cobalto' },
+            { nombre: 'Cuarzo Hematoide', img: 'Cuarzo Hematoide.jpg', detalle: 'Cuarzo con hierro rojo' },
+            { nombre: 'Cuarzo Rutilado Dorado', img: 'Cuarzo Rutilado Dorado.jpg', detalle: 'Agujas de titanio doradas' },
+            { nombre: 'Cuarzo Rutilado Plateado', img: 'Cuarzo Rutilado Plateado.jpg', detalle: 'Hilos de plata internos' }
+        ],
+        peru: [
+            { nombre: 'Crisocola', img: 'Crisocola.jpg', detalle: 'Silicato de cobre andino' },
+            { nombre: 'Fosfosiderita', img: 'Fosfosiderita.jpg', detalle: 'Fosfato lila delicado' }
+        ],
+        bolivia: [
+            { nombre: 'Bolivianita', img: 'Bolivianita.png', detalle: 'Ametrino exclusivo boliviano' }
+        ],
+        colombia: [
+            { nombre: 'Esmeralda en Matriz', img: 'Esmeralda en matriz.jpg', detalle: 'Berilo verde en roca madre' }
+        ],
+        chile: [
+            { nombre: 'Lapislázuli', img: 'Lapislazuli.jpg', detalle: 'Lazurita azul profundo' }
+        ],
+        mexico: [
+            { nombre: 'Fluorita Arcoíris', img: 'Fluorita Arcoiris.jpg', detalle: 'Fluoruro multicolor' },
+            { nombre: 'Jaspe Imperial Rojo', img: 'Jaspe Imperial Rojo.jpg', detalle: 'Calcedonia roja imperial' }
+        ],
+        dominicana: [
+            { nombre: 'Larimar', img: 'Larimar.jpg', detalle: 'Pectolita azul caribeña' }
+        ],
+        espana: [
+            { nombre: 'Aragonita Beige', img: 'Aragonita Beige.png', detalle: 'Carbonato en cristales tabulares' }
+        ],
+        marruecos: [
+            { nombre: 'Azurita', img: 'Azurita.png', detalle: 'Carbonato de cobre azul' },
+            { nombre: 'Calcopirita', img: 'Calcopirita.jpg', detalle: 'Sulfuro iridiscente' }
+        ],
+        congo: [
+            { nombre: 'Cianita Azul', img: 'Cianita Azul.jpg', detalle: 'Silicato de aluminio laminar' }
+        ],
+        madagascar: [
+            { nombre: 'Amazonita', img: 'Amazonita.png', detalle: 'Feldespato verde agua' },
+            { nombre: 'Crisoprasa', img: 'Crisoprasa.jpg', detalle: 'Calcedonia verde manzana' },
+            { nombre: 'Jaspe Océano', img: 'Jaspe Oceano.jpg', detalle: 'Orbicular con patrones marinos' },
+            { nombre: 'Labradorita', img: 'Labradorita.jpg', detalle: 'Iridiscencia spectral' }
+        ],
+        india: [
+            { nombre: 'Fucsita con Rubí', img: 'Fucsita con Rubi.jpg', detalle: 'Mica verde con corindón' },
+            { nombre: 'Granate', img: 'Granate.jpg', detalle: 'Silicato rojo profundo' },
+            { nombre: 'Labradorita Blanca', img: 'Labradorita Blanca.jpg', detalle: 'Moonstone arcoíris' }
+        ],
+        pakistan: [
+            { nombre: 'K2', img: 'K2.jpg', detalle: 'Granito con azurita del Karakórum' }
+        ],
+        afganistan: [
+            { nombre: 'Apatita Azul', img: 'Apatita Azul.png', detalle: 'Fosfato azul neón' }
+        ],
+        rusia: [
+            { nombre: 'Charoíta', img: 'Charoita.jpg', detalle: 'Silicato púrpura del lago Baikal' }
+        ],
+        china: [
+            { nombre: 'Jaspe Abejorro', img: 'Jaspe Abejorro.jpg', detalle: 'Volcánico amarillo y negro' },
+            { nombre: 'Iolita', img: 'Iolita.jpg', detalle: 'Cordierita violeta pleocroica' }
+        ],
+        indonesia: [
+            { nombre: 'Atlantisita', img: 'Atlantisita.png', detalle: 'Serpentina con stichtita' }
+        ],
+        australia: [
+            { nombre: 'Jaspe Imperial Rojo', img: 'Jaspe Imperial Rojo.jpg', detalle: 'Calcedonia roja del outback' },
+            { nombre: 'Crisoprasa', img: 'Crisoprasa.jpg', detalle: 'Calcedonia verde níquel' }
+        ]
+    };
+
+    const NOMBRES_REGION = {
+        brasil: 'Brasil', peru: 'Perú', bolivia: 'Bolivia', colombia: 'Colombia',
+        chile: 'Chile', mexico: 'México', dominicana: 'Rep. Dominicana',
+        espana: 'España', marruecos: 'Marruecos', congo: 'Congo',
+        madagascar: 'Madagascar', india: 'India', pakistan: 'Pakistán',
+        afganistan: 'Afganistán', rusia: 'Rusia', china: 'China',
+        indonesia: 'Indonesia', australia: 'Australia'
+    };
+
+    const tooltip = document.getElementById('mapaTooltip');
+    const tooltipRegion = document.getElementById('tooltipRegion');
+    const tooltipCount = document.getElementById('tooltipCount');
+    const tooltipStones = document.getElementById('tooltipStones');
+    const mapaWrap = document.querySelector('.mapa-wrap');
+    const dots = document.querySelectorAll('.mapa-dot');
+    let activeRegion = null;
+
+    function showTooltip(dot, region) {
+        const piedras = PIEDRAS_POR_REGION[region];
+        if (!piedras) return;
+
+        /* Desactivar dot anterior */
+        document.querySelectorAll('.mapa-dot.active').forEach(d => d.classList.remove('active'));
+        dot.classList.add('active');
+        activeRegion = region;
+
+        tooltipRegion.textContent = NOMBRES_REGION[region] || region;
+        tooltipCount.textContent = piedras.length + (piedras.length === 1 ? ' reliquia' : ' reliquias');
+
+        tooltipStones.innerHTML = piedras.map(p =>
+            '<div class="mapa-tooltip-stone">' +
+                '<img src="../img/coleccion/' + p.img + '" alt="' + p.nombre + '" loading="lazy">' +
+                '<div>' +
+                    '<div class="mapa-tooltip-stone-name">' + p.nombre + '</div>' +
+                    '<div class="mapa-tooltip-stone-detail">' + p.detalle + '</div>' +
+                '</div>' +
+            '</div>'
+        ).join('');
+
+        /* Posicionar tooltip cerca del dot */
+        const wrapRect = mapaWrap.getBoundingClientRect();
+        const dotRect = dot.getBoundingClientRect();
+        let posX = dotRect.left - wrapRect.left + dotRect.width + 12;
+        let posY = dotRect.top - wrapRect.top - 10;
+
+        tooltip.classList.add('active');
+
+        /* Ajustar si se sale por la derecha */
+        requestAnimationFrame(() => {
+            const tRect = tooltip.getBoundingClientRect();
+            if (posX + tRect.width > wrapRect.width) {
+                posX = dotRect.left - wrapRect.left - tRect.width - 12;
+            }
+            if (posY + tRect.height > wrapRect.height) {
+                posY = wrapRect.height - tRect.height - 10;
+            }
+            if (posY < 0) posY = 10;
+            tooltip.style.left = posX + 'px';
+            tooltip.style.top = posY + 'px';
+        });
+
+        tooltip.style.left = posX + 'px';
+        tooltip.style.top = posY + 'px';
+    }
+
+    function hideTooltip() {
+        tooltip.classList.remove('active');
+        document.querySelectorAll('.mapa-dot.active').forEach(d => d.classList.remove('active'));
+        activeRegion = null;
+    }
+
+    dots.forEach(dot => {
+        const region = dot.dataset.region;
+
+        dot.addEventListener('click', function(e) {
+            e.stopPropagation();
+            if (activeRegion === region) {
+                hideTooltip();
+            } else {
+                showTooltip(dot, region);
+            }
+        });
+
+        dot.addEventListener('mouseenter', function() {
+            if (!activeRegion) showTooltip(dot, region);
+        });
+
+        dot.addEventListener('mouseleave', function() {
+            if (activeRegion === region && !tooltip.matches(':hover')) {
+                hideTooltip();
+            }
+        });
+    });
+
+    tooltip.addEventListener('mouseleave', hideTooltip);
+    document.addEventListener('click', function(e) {
+        if (!tooltip.contains(e.target) && !e.target.closest('.mapa-dot')) {
+            hideTooltip();
+        }
+    });
+})();
+</script>
+</body>
+</html>
