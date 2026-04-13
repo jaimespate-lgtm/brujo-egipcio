@@ -79,7 +79,7 @@
           recomendadas.map(function(p) {
             return '<a href="piedra.html?slug=' + p.slug + '" class="quiz-result-card">' +
               '<div class="quiz-result-card-img">' +
-                '<img src="img/piedras/' + p.nombre + '_Frontal.png" alt="' + p.nombre + '" loading="lazy">' +
+                '<img src="' + getPiedraImgSrc(p.nombre) + '" alt="' + p.nombre + '" loading="lazy">' +
               '</div>' +
               '<div class="quiz-result-card-name">' + p.nombre + '</div>' +
               '<div class="quiz-result-card-price">' + formatPrice(p.precio) + '</div>' +

@@ -9,7 +9,7 @@
   if (listGrid) {
     listGrid.innerHTML = BLOG_ARTICULOS.map(function(a) {
       var piedra = a.piedras[0] ? getPiedraBySlug(a.piedras[0]) : null;
-      var img = piedra ? 'img/piedras/' + piedra.nombre + '_Frontal_fondo.png' : '';
+      var img = piedra ? getPiedraImgSrc(piedra.nombre) : '';
       return '<a href="blog.html?art=' + a.slug + '" class="blog-card">' +
         '<div class="blog-card-img">' +
           (img ? '<img src="' + img + '" alt="' + a.titulo + '" loading="lazy" onerror="this.style.display=\'none\'">' : '') +
@@ -54,7 +54,7 @@
         piedrasRel.map(function(p) {
           return '<a href="piedra.html?slug=' + p.slug + '" class="card-mini">' +
             '<div class="card-mini-img">' +
-              '<img src="img/piedras/' + p.nombre + '_Frontal.png" alt="' + p.nombre + '" loading="lazy" onerror="this.style.display=\'none\'">' +
+              '<img src="' + getPiedraImgSrc(p.nombre) + '" alt="' + p.nombre + '" loading="lazy">' +
             '</div>' +
             '<div class="card-mini-body">' +
               '<div class="card-mini-name">' + p.nombre + '</div>' +

@@ -97,7 +97,7 @@ function renderWishlistPage() {
     return '<div class="wish-card">' +
       '<a href="piedra.html?slug=' + p.slug + '" class="wish-card-link">' +
         '<div class="wish-card-img">' +
-          '<img src="img/piedras/' + p.nombre + '_Frontal.png" alt="' + p.nombre + '" loading="lazy" onerror="this.style.display=\'none\'">' +
+          '<img src="' + getPiedraImgSrc(p.nombre) + '" alt="' + p.nombre + '" loading="lazy">' +
         '</div>' +
         '<div class="wish-card-info">' +
           '<div class="wish-card-name">' + p.nombre + '</div>' +

@@ -4,11 +4,7 @@
 // Rarezas del Mundo | Energias Cromaticas | Alquimia
 // ============================================
 
-const IMG_BASE = 'img/piedras/';
-
-function piedraImg(nombre, variante) {
-  return `${IMG_BASE}${nombre}_${variante}`;
-}
+// Imagen: usa getPiedraImgSrc(nombre) de data.js
 
 // Estado global del catalogo
 let currentFilter = 'todas';
@@ -134,11 +130,10 @@ function renderPiedraCard(p) {
       <div class="card-img-wrap">
         ${stockBadge}
         <div class="card-img-clean">
-          <img src="${piedraImg(p.nombre, 'Transparente.png')}" alt="${p.nombre}" loading="lazy"
-               onerror="this.src='${piedraImg(p.nombre, 'Frontal.png')}'">
+          <img src="${getPiedraImgSrc(p.nombre)}" alt="${p.nombre}" loading="lazy">
         </div>
         <div class="card-img-real">
-          <img src="${piedraImg(p.nombre, 'Frontal.png')}" alt="${p.nombre}" loading="lazy">
+          <img src="${getPiedraImgSrc(p.nombre)}" alt="${p.nombre}" loading="lazy">
         </div>
         <div class="card-quickview"><span>Ver Detalle</span></div>
       </div>
@@ -227,8 +222,7 @@ function renderCatalogo() {
       reliquiaEl.innerHTML = `
         <div class="reliquia-inner">
           <div class="reliquia-img">
-            <img src="${piedraImg(p.nombre, 'Transparente.png')}" alt="${p.nombre}"
-                 onerror="this.src='${piedraImg(p.nombre, 'Frontal.png')}'">
+            <img src="${getPiedraImgSrc(p.nombre)}" alt="${p.nombre}">
           </div>
           <div class="reliquia-info">
             <span class="section-overline">&#x13079; Reliquia</span>

@@ -73,36 +73,36 @@
             { nombre: 'Fosfosiderita', img: 'Fosfosiderita.jpg', detalle: 'Fosfato lila delicado' }
         ],
         bolivia: [
-            { nombre: 'Bolivianita', img: 'Bolivianita.png', detalle: 'Ametrino exclusivo boliviano' }
+            { nombre: 'Bolivianita', img: 'Bolivianita.jpg', detalle: 'Ametrino exclusivo boliviano' }
         ],
         colombia: [
-            { nombre: 'Esmeralda en Matriz', img: 'Esmeralda en matriz.jpg', detalle: 'Berilo verde en roca madre' }
+            { nombre: 'Esmeralda en Matriz', img: 'Esmeralda en matriz.png', detalle: 'Berilo verde en roca madre' }
         ],
         chile: [
             { nombre: 'Lapislazuli', img: 'Lapislazuli.jpg', detalle: 'Lazurita azul profundo' }
         ],
         mexico: [
-            { nombre: 'Fluorita Arcoiris', img: 'Fluorita Arcoiris.jpg', detalle: 'Fluoruro multicolor' },
-            { nombre: 'Jaspe Imperial Rojo', img: 'Jaspe Imperial Rojo.jpg', detalle: 'Calcedonia roja imperial' }
+            { nombre: 'Fluorita Multicolor', img: 'Fluorita Multicolor.jpg', detalle: 'Fluoruro multicolor' },
+            { nombre: 'Jaspe Imperial', img: 'Jaspe Imperial.jpg', detalle: 'Calcedonia roja imperial' }
         ],
         dominicana: [
-            { nombre: 'Larimar', img: 'Larimar.jpg', detalle: 'Pectolita azul caribeña' }
+            { nombre: 'Larimar', img: 'Larimar.png', detalle: 'Pectolita azul caribeña' }
         ],
         espana: [
-            { nombre: 'Aragonita Beige', img: 'Aragonita Beige.png', detalle: 'Carbonato en cristales tabulares' }
+            { nombre: 'Aragonita Beige', img: 'Aragonita Beige.jpg', detalle: 'Carbonato en cristales tabulares' }
         ],
         marruecos: [
-            { nombre: 'Azurita', img: 'Azurita.png', detalle: 'Carbonato de cobre azul' },
-            { nombre: 'Calcopirita', img: 'Calcopirita.jpg', detalle: 'Sulfuro iridiscente' }
+            { nombre: 'Azurita', img: 'Azurita.jpg', detalle: 'Carbonato de cobre azul' },
+            { nombre: 'Calcopirita', img: 'Calcopirita.png', detalle: 'Sulfuro iridiscente' }
         ],
         congo: [
             { nombre: 'Cianita Azul', img: 'Cianita Azul.jpg', detalle: 'Silicato de aluminio laminar' }
         ],
         madagascar: [
-            { nombre: 'Amazonita', img: 'Amazonita.png', detalle: 'Feldespato verde agua' },
+            { nombre: 'Amazonita', img: 'Amazonita.jpg', detalle: 'Feldespato verde agua' },
             { nombre: 'Crisoprasa', img: 'Crisoprasa.jpg', detalle: 'Calcedonia verde manzana' },
             { nombre: 'Jaspe Oceano', img: 'Jaspe Oceano.jpg', detalle: 'Orbicular con patrones marinos' },
-            { nombre: 'Labradorita', img: 'Labradorita.jpg', detalle: 'Iridiscencia spectral' }
+            { nombre: 'Labradorita Negra', img: 'Labradorita Negra.jpg', detalle: 'Iridiscencia spectral' }
         ],
         india: [
             { nombre: 'Fucsita con Rubi', img: 'Fucsita con Rubi.jpg', detalle: 'Mica verde con corindon' },
@@ -113,7 +113,7 @@
             { nombre: 'K2', img: 'K2.jpg', detalle: 'Granito con azurita del Karakorum' }
         ],
         afganistan: [
-            { nombre: 'Apatita Azul', img: 'Apatita Azul.png', detalle: 'Fosfato azul neon' }
+            { nombre: 'Apatita', img: 'Apatita.jpg', detalle: 'Fosfato azul neon' }
         ],
         rusia: [
             { nombre: 'Charoita', img: 'Charoita.jpg', detalle: 'Silicato púrpura del lago Baikal' }
@@ -123,10 +123,10 @@
             { nombre: 'Iolita', img: 'Iolita.jpg', detalle: 'Cordierita violeta pleocroica' }
         ],
         indonesia: [
-            { nombre: 'Atlantisita', img: 'Atlantisita.png', detalle: 'Serpentina con stichtita' }
+            { nombre: 'Atlantisita', img: 'Atlantisita.png', detalle: 'Serpentina + stichtita tasmana' }
         ],
         australia: [
-            { nombre: 'Jaspe Imperial Rojo', img: 'Jaspe Imperial Rojo.jpg', detalle: 'Calcedonia roja del outback' },
+            { nombre: 'Jaspe Imperial', img: 'Jaspe Imperial.jpg', detalle: 'Calcedonia roja del outback' },
             { nombre: 'Crisoprasa', img: 'Crisoprasa.jpg', detalle: 'Calcedonia verde niquel' }
         ]
     };
@@ -154,7 +154,7 @@
         tooltipStones.innerHTML = piedras.map(function(p) {
             var slug = p.nombre.toLowerCase().replace(/\s+/g, '-');
             return '<a href="piedra.html?slug=' + slug + '" class="mapa-tooltip-stone" style="text-decoration:none;color:inherit;cursor:pointer">' +
-                '<img src="img/coleccion/' + p.img + '" alt="' + p.nombre + '" loading="lazy">' +
+                '<img src="img/ColeccionPiedras/' + p.img + '" alt="' + p.nombre + '" loading="lazy">' +
                 '<div>' +
                     '<div class="mapa-tooltip-stone-name">' + p.nombre + '</div>' +
                     '<div class="mapa-tooltip-stone-detail">' + p.detalle + '</div>' +
@@ -228,28 +228,10 @@
     var cards = document.querySelectorAll('.color-card[data-color]');
     if (!cards.length || typeof PIEDRAS === 'undefined') return;
 
-    var STONE_IMAGES = {
-        'Amazonita': 'Amazonita.png', 'Apatita Azul': 'Apatita Azul.png',
-        'Aragonita Beige': 'Aragonita Beige.png', 'Atlantisita': 'Atlantisita.png',
-        'Azurita': 'Azurita.png', 'Bolivianita': 'Bolivianita.png',
-        'Calcita Caribe': 'Calcita Caribe.png', 'Calcopirita': 'Calcopirita.jpg',
-        'Charoita': 'Charoita.jpg', 'Cianita Azul': 'Cianita Azul.jpg',
-        'Cobaltocalcita': 'Cobaltocalcita.jpg', 'Crisocola': 'Crisocola.jpg',
-        'Crisoprasa': 'Crisoprasa.jpg', 'Cuarzo Hematoide': 'Cuarzo Hematoide.jpg',
-        'Cuarzo Rutilado Dorado': 'Cuarzo Rutilado Dorado.jpg',
-        'Cuarzo Rutilado Plateado': 'Cuarzo Rutilado Plateado.jpg',
-        'Esmeralda en Matriz': 'Esmeralda en matriz.jpg',
-        'Fluorita Arcoiris': 'Fluorita Arcoiris.jpg', 'Fosfosiderita': 'Fosfosiderita.jpg',
-        'Fucsita con Rubi': 'Fucsita con Rubi.jpg', 'Granate': 'Granate.jpg',
-        'Iolita': 'Iolita.jpg', 'Jaspe Abejorro': 'Jaspe Abejorro.jpg',
-        'Jaspe Imperial Rojo': 'Jaspe Imperial Rojo.jpg', 'Jaspe Oceano': 'Jaspe Oceano.jpg',
-        'K2': 'K2.jpg', 'Labradorita': 'Labradorita.jpg',
-        'Labradorita Blanca': 'Labradorita Blanca.jpg',
-        'Lapislazuli': 'Lapislazuli.jpg', 'Larimar': 'Larimar.jpg'
-    };
+    // Usa PIEDRA_IMG_MAP de data.js
 
     function getStonesWithImages(color) {
-        return PIEDRAS.filter(function(p) { return p.color === color && STONE_IMAGES[p.nombre]; });
+        return PIEDRAS.filter(function(p) { return p.color === color && PIEDRA_IMG_MAP[p.nombre]; });
     }
 
     // Setup: wrap grid in map container + create SVG
@@ -340,7 +322,7 @@
             var circle = document.createElement('div');
             circle.className = 'map-stone-circle';
             var img = document.createElement('img');
-            img.src = 'img/coleccion/' + STONE_IMAGES[stone.nombre];
+            img.src = 'img/ColeccionPiedras/' + PIEDRA_IMG_MAP[stone.nombre];
             img.alt = stone.nombre;
             img.loading = 'lazy';
             circle.appendChild(img);

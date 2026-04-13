@@ -18,15 +18,8 @@
     return;
   }
 
-  // Imagenes: {Nombre}_{Variante}.png
-  const n = piedra.nombre;
-  const IMGS = {
-    frontal:      `img/piedras/${n}_Frontal.png`,
-    frontalFondo: `img/piedras/${n}_Frontal_fondo.png`,
-    v1:           `img/piedras/${n}_1.png`,
-    v2:           `img/piedras/${n}_2.png`,
-    v3:           `img/piedras/${n}_3.png`
-  };
+  // Imagen unica de ColeccionPiedras
+  const piedraImgUrl = getPiedraImgSrc(piedra.nombre);
 
   // Title y meta
   document.title = `${piedra.nombre} — Brujo Egipcio`;
@@ -43,38 +36,14 @@
     gallery.innerHTML = `
       <div class="gallery-main">
         <div class="gallery-main-content">
-          <img src="${IMGS.frontal}" alt="${piedra.nombre}" id="mainImg">
-        </div>
-      </div>
-      <div class="gallery-thumbs">
-        <div class="gallery-thumb active" data-src="${IMGS.frontal}">
-          <img src="${IMGS.frontal}" alt="${piedra.nombre} frontal">
-        </div>
-        <div class="gallery-thumb" data-src="${IMGS.v2}">
-          <img src="${IMGS.v2}" alt="${piedra.nombre} variante 2">
-        </div>
-        <div class="gallery-thumb" data-src="${IMGS.v3}">
-          <img src="${IMGS.v3}" alt="${piedra.nombre} variante 3">
-        </div>
-        <div class="gallery-thumb" data-src="${IMGS.frontalFondo}">
-          <img src="${IMGS.frontalFondo}" alt="${piedra.nombre} en entorno">
+          <img src="${piedraImgUrl}" alt="${piedra.nombre}" id="mainImg">
         </div>
       </div>
       <div class="photo-label">
         <span class="dot"></span>
-        Fotos reales del ejemplar
+        Foto real del ejemplar
       </div>
     `;
-
-    // Thumb click — cambia imagen principal
-    const mainImg = document.getElementById('mainImg');
-    gallery.querySelectorAll('.gallery-thumb').forEach(thumb => {
-      thumb.addEventListener('click', () => {
-        gallery.querySelectorAll('.gallery-thumb').forEach(t => t.classList.remove('active'));
-        thumb.classList.add('active');
-        if (mainImg) mainImg.src = thumb.dataset.src;
-      });
-    });
   }
 
   // Badge de rareza
@@ -219,7 +188,7 @@
         ${rel.map(r => `
           <a href="piedra.html?slug=${r.slug}" class="card-mini">
             <div class="card-mini-img">
-              <img src="img/piedras/${r.nombre}_Frontal.png" alt="${r.nombre}" loading="lazy">
+              <img src="${getPiedraImgSrc(r.nombre)}" alt="${r.nombre}" loading="lazy">
             </div>
             <div class="card-mini-body">
               <div class="card-mini-name">${r.nombre}</div>

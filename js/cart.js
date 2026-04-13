@@ -217,7 +217,7 @@ function renderCart() {
     if (!p) return '';
     return '<div class="cart-item" data-slug="' + item.slug + '">' +
       '<div class="cart-item-img">' +
-        '<img src="img/piedras/' + p.nombre + '_Frontal.png" alt="' + p.nombre + '" onerror="this.style.display=\'none\'">' +
+        '<img src="' + getPiedraImgSrc(p.nombre) + '" alt="' + p.nombre + '">' +
       '</div>' +
       '<div class="cart-item-info">' +
         '<div class="cart-item-name">' + p.nombre + '</div>' +

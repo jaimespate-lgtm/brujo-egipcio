@@ -52,7 +52,7 @@
       '<div class="kit-piedras">' +
         piedras.map(function(p) {
           return '<div class="kit-piedra">' +
-            '<img src="img/piedras/' + p.nombre + '_Transparente.png" alt="' + p.nombre + '" loading="lazy" onerror="this.src=\'img/piedras/' + p.nombre + '_Frontal.png\'">' +
+            '<img src="' + getPiedraImgSrc(p.nombre) + '" alt="' + p.nombre + '" loading="lazy">' +
             '<span>' + p.nombre + '</span>' +
           '</div>';
         }).join('') +
