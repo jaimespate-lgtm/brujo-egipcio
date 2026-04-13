@@ -79,7 +79,7 @@
             { nombre: 'Esmeralda en Matriz', img: 'Esmeralda en matriz.png', detalle: 'Berilo verde en roca madre' }
         ],
         chile: [
-            { nombre: 'Lapislazuli', img: 'Lapislazuli.jpg', detalle: 'Lazurita azul profundo' }
+            { nombre: 'Lapislázuli', img: 'Lapislazuli.jpg', detalle: 'Lazurita azul profundo' }
         ],
         mexico: [
             { nombre: 'Fluorita Multicolor', img: 'Fluorita Multicolor.jpg', detalle: 'Fluoruro multicolor' },
@@ -101,11 +101,11 @@
         madagascar: [
             { nombre: 'Amazonita', img: 'Amazonita.jpg', detalle: 'Feldespato verde agua' },
             { nombre: 'Crisoprasa', img: 'Crisoprasa.jpg', detalle: 'Calcedonia verde manzana' },
-            { nombre: 'Jaspe Oceano', img: 'Jaspe Oceano.jpg', detalle: 'Orbicular con patrones marinos' },
+            { nombre: 'Jaspe Océano', img: 'Jaspe Oceano.jpg', detalle: 'Orbicular con patrones marinos' },
             { nombre: 'Labradorita Negra', img: 'Labradorita Negra.jpg', detalle: 'Iridiscencia spectral' }
         ],
         india: [
-            { nombre: 'Fucsita con Rubi', img: 'Fucsita con Rubi.jpg', detalle: 'Mica verde con corindon' },
+            { nombre: 'Fucsita con Rubí', img: 'Fucsita con Rubi.jpg', detalle: 'Mica verde con corindon' },
             { nombre: 'Granate', img: 'Granate.jpg', detalle: 'Silicato rojo profundo' },
             { nombre: 'Labradorita Blanca', img: 'Labradorita Blanca.jpg', detalle: 'Moonstone arcoiris' }
         ],
