@@ -82,18 +82,18 @@
             { nombre: 'Lapislázuli', img: 'Lapislazuli.jpg', detalle: 'Lazurita azul profundo' }
         ],
         mexico: [
-            { nombre: 'Fluorita Multicolor', img: 'Fluorita Multicolor.jpg', detalle: 'Fluoruro multicolor' },
+            { nombre: 'Fluorita Multicolor', img: 'Fluorita Multicolor.png', detalle: 'Fluoruro multicolor' },
             { nombre: 'Jaspe Imperial', img: 'Jaspe Imperial.jpg', detalle: 'Calcedonia roja imperial' }
         ],
         dominicana: [
             { nombre: 'Larimar', img: 'Larimar.png', detalle: 'Pectolita azul caribeña' }
         ],
         espana: [
-            { nombre: 'Aragonita Beige', img: 'Aragonita Beige.jpg', detalle: 'Carbonato en cristales tabulares' }
+            { nombre: 'Aragonita Beige', img: 'Aragonita Beige.png', detalle: 'Carbonato en cristales tabulares' }
         ],
         marruecos: [
             { nombre: 'Azurita', img: 'Azurita.jpg', detalle: 'Carbonato de cobre azul' },
-            { nombre: 'Calcopirita', img: 'Calcopirita.png', detalle: 'Sulfuro iridiscente' }
+            { nombre: 'Calcopirita', img: 'Calcopirita.jpg', detalle: 'Sulfuro iridiscente' }
         ],
         congo: [
             { nombre: 'Cianita Azul', img: 'Cianita Azul.jpg', detalle: 'Silicato de aluminio laminar' }
@@ -123,7 +123,7 @@
             { nombre: 'Iolita', img: 'Iolita.jpg', detalle: 'Cordierita violeta pleocroica' }
         ],
         indonesia: [
-            { nombre: 'Atlantisita', img: 'Atlantisita.png', detalle: 'Serpentina + stichtita tasmana' }
+            { nombre: 'Atlantisita', img: 'Atlantisita.jpg', detalle: 'Serpentina + stichtita tasmana' }
         ],
         australia: [
             { nombre: 'Jaspe Imperial', img: 'Jaspe Imperial.jpg', detalle: 'Calcedonia roja del outback' },
