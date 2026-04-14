@@ -147,26 +147,27 @@ body.home-v2 .hero-logo {
 body.home-v2 .hero h1 {
     font: 600 clamp(2.4rem,5.5vw,4rem)/1.15 'Cinzel', serif;
     margin-bottom: 20px; letter-spacing: 0.06em;
-    background: linear-gradient(90deg, #D4A853 0%, #F5E6C8 40%, #FFF8E7 50%, #F5E6C8 60%, #D4A853 100%);
-    background-size: 200% 100%;
+    background: linear-gradient(135deg, #E8C56D 0%, #F5DFA0 25%, #FCEABB 40%, #F5DFA0 50%, #D4A843 65%, #B8912E 80%, #E8C56D 100%);
+    background-size: 300% 300%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    animation: v2shimmer 3s ease-in-out infinite;
+    animation: v2goldShift 6s ease-in-out infinite;
     filter: drop-shadow(0 2px 12px rgba(0,0,0,0.6));
 }
 body.home-v2 .hero h1 em {
     font-style: normal;
     -webkit-text-fill-color: transparent;
-    background: linear-gradient(90deg, #C5A028 0%, #F0D060 40%, #FFFBE8 50%, #F0D060 60%, #C5A028 100%);
-    background-size: 200% 100%;
+    background: linear-gradient(135deg, #C5A028 0%, #E8D068 20%, #FCEABB 40%, #F0C040 55%, #B88A20 75%, #D4A843 100%);
+    background-size: 300% 300%;
     -webkit-background-clip: text;
     background-clip: text;
-    animation: v2shimmer 3s ease-in-out infinite 0.5s;
+    animation: v2goldShift 6s ease-in-out infinite 1s;
 }
-@keyframes v2shimmer {
-    0% { background-position: 100% 0; }
-    100% { background-position: -100% 0; }
+@keyframes v2goldShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 body.home-v2 .hero-sub {
     font: 400 clamp(1.1rem,2vw,1.4rem)/1.4 'Cormorant Garamond', serif;
