@@ -118,7 +118,7 @@ body.home-v2 .hero-bg {
 }
 body.home-v2 .hero-overlay {
     position: absolute; inset: 0;
-    background: linear-gradient(180deg, rgba(20,18,16,0.0) 0%, rgba(20,18,16,0.0) 60%, rgba(20,18,16,0.35) 100%) !important;
+    background: linear-gradient(180deg, rgba(20,18,16,0.15) 0%, rgba(20,18,16,0.4) 40%, rgba(20,18,16,0.75) 100%) !important;
 }
 body.home-v2 .hero-content {
     position: relative; z-index: 2; max-width: 800px; padding: 0 32px;
