@@ -778,6 +778,21 @@ body.home-v2 .anker-float:hover .anker-float-img {
 body.home-v2 .anker-float-pulse {
     display: none;
 }
+
+/* ====== AMBIENT MUSIC TOGGLE ====== */
+body.home-v2 .ambient-toggle {
+    position: fixed; bottom: 140px; right: 24px; z-index: 997;
+    width: 40px; height: 40px; border-radius: 50%;
+    background: rgba(20,18,16,0.8); border: 1px solid rgba(201,168,76,0.3);
+    color: var(--gold-light); font-size: 1.1rem; cursor: pointer;
+    opacity: 0.5; transition: all 0.3s;
+    backdrop-filter: blur(8px);
+}
+body.home-v2 .ambient-toggle:hover { opacity: 1; border-color: var(--gold); }
+body.home-v2 .ambient-toggle.active {
+    opacity: 0.8; border-color: var(--gold);
+    box-shadow: 0 0 20px rgba(184,149,46,0.2);
+}
 body.home-v2 .anker-chat-avatar {
     object-fit: cover;
     border-radius: 50%;
