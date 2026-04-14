@@ -59,20 +59,27 @@ body.home-v2 .header {
 body.home-v2 .header-top-bar {
     background: var(--dark); color: var(--gold-light);
     font: 500 0.6rem/1 'Cinzel', serif; letter-spacing: 0.2em;
-    text-transform: uppercase; text-align: center; padding: 7px 20px;
+    text-transform: uppercase; padding: 7px 0;
     border-bottom: 1px solid rgba(184,149,46,0.06);
+    overflow: hidden; white-space: nowrap;
 }
 body.home-v2 .header-top-bar .topbar-slider {
-    animation: none;
+    display: inline-block;
+    animation: v2marquee 20s linear infinite;
 }
 body.home-v2 .header-top-bar .topbar-slider span {
     display: inline; position: static; opacity: 1; animation: none;
+    padding: 0 24px;
 }
 body.home-v2 .header-top-bar .topbar-slider span:nth-child(n+4) {
-    display: none;
+    display: inline;
 }
-body.home-v2 .header-top-bar .topbar-slider span:not(:last-of-type):not(:nth-child(3))::after {
+body.home-v2 .header-top-bar .topbar-slider span::after {
     content: ' · '; color: var(--gold-light);
+}
+@keyframes v2marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
 }
 body.home-v2 .header-main {
     padding: 14px 48px; max-width: 1440px; margin: 0 auto;
