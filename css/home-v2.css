@@ -118,24 +118,40 @@ body.home-v2 .hero-bg {
 }
 body.home-v2 .hero-overlay {
     position: absolute; inset: 0;
-    background: linear-gradient(180deg, rgba(20,18,16,0.15) 0%, rgba(20,18,16,0.4) 40%, rgba(20,18,16,0.75) 100%) !important;
+    background:
+        radial-gradient(ellipse 80% 60% at 50% 45%, rgba(197,160,40,0.12) 0%, transparent 70%),
+        linear-gradient(180deg, rgba(15,12,5,0.25) 0%, rgba(15,12,5,0.5) 40%, rgba(10,8,4,0.82) 100%) !important;
+}
+body.home-v2 .hero-glow {
+    position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    background: radial-gradient(ellipse 50% 40% at 50% 42%, rgba(201,168,76,0.15) 0%, transparent 60%);
+    animation: v2heroGlow 4s ease-in-out infinite alternate;
+}
+@keyframes v2heroGlow {
+    0% { opacity: 0.6; transform: scale(1); }
+    100% { opacity: 1; transform: scale(1.08); }
 }
 body.home-v2 .hero-content {
     position: relative; z-index: 2; max-width: 800px; padding: 0 32px;
 }
 body.home-v2 .hero-logo {
     width: 120px; height: 120px; border-radius: 50%; object-fit: cover;
-    margin: 0 auto 40px; border: 1px solid rgba(201,168,76,0.35);
-    box-shadow: 0 0 80px rgba(184,149,46,0.12), 0 0 0 12px rgba(184,149,46,0.04);
+    margin: 0 auto 40px; border: 1px solid rgba(201,168,76,0.45);
+    box-shadow: 0 0 100px rgba(184,149,46,0.2), 0 0 0 12px rgba(184,149,46,0.06), 0 0 200px rgba(184,149,46,0.08);
+    animation: v2logoGlow 3s ease-in-out infinite alternate;
+}
+@keyframes v2logoGlow {
+    0% { box-shadow: 0 0 80px rgba(184,149,46,0.15), 0 0 0 12px rgba(184,149,46,0.04); }
+    100% { box-shadow: 0 0 120px rgba(184,149,46,0.3), 0 0 0 14px rgba(184,149,46,0.08), 0 0 250px rgba(184,149,46,0.1); }
 }
 body.home-v2 .hero h1 {
     font: 600 clamp(2.4rem,5.5vw,4rem)/1.15 'Cinzel', serif;
-    color: white; margin-bottom: 20px; letter-spacing: 0.06em;
-    text-shadow: 0 2px 16px rgba(0,0,0,0.6), 0 0 80px rgba(0,0,0,0.3);
+    color: #F5E6C8; margin-bottom: 20px; letter-spacing: 0.06em;
+    text-shadow: 0 2px 16px rgba(0,0,0,0.7), 0 0 60px rgba(184,149,46,0.15);
 }
 body.home-v2 .hero h1 em {
-    font-style: normal; color: #8B6914;
-    text-shadow: 0 2px 20px rgba(0,0,0,0.7), 0 0 40px rgba(0,0,0,0.3);
+    font-style: normal; color: #D4A853;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.7), 0 0 50px rgba(197,160,40,0.2);
 }
 body.home-v2 .hero-sub {
     font: 400 clamp(1.1rem,2vw,1.4rem)/1.4 'Cormorant Garamond', serif;
