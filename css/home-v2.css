@@ -146,12 +146,27 @@ body.home-v2 .hero-logo {
 }
 body.home-v2 .hero h1 {
     font: 600 clamp(2.4rem,5.5vw,4rem)/1.15 'Cinzel', serif;
-    color: #F5E6C8; margin-bottom: 20px; letter-spacing: 0.06em;
-    text-shadow: 0 2px 16px rgba(0,0,0,0.7), 0 0 60px rgba(184,149,46,0.15);
+    margin-bottom: 20px; letter-spacing: 0.06em;
+    background: linear-gradient(90deg, #D4A853 0%, #F5E6C8 40%, #FFF8E7 50%, #F5E6C8 60%, #D4A853 100%);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: v2shimmer 3s ease-in-out infinite;
+    filter: drop-shadow(0 2px 12px rgba(0,0,0,0.6));
 }
 body.home-v2 .hero h1 em {
-    font-style: normal; color: #D4A853;
-    text-shadow: 0 2px 20px rgba(0,0,0,0.7), 0 0 50px rgba(197,160,40,0.2);
+    font-style: normal;
+    -webkit-text-fill-color: transparent;
+    background: linear-gradient(90deg, #C5A028 0%, #F0D060 40%, #FFFBE8 50%, #F0D060 60%, #C5A028 100%);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    animation: v2shimmer 3s ease-in-out infinite 0.5s;
+}
+@keyframes v2shimmer {
+    0% { background-position: 100% 0; }
+    100% { background-position: -100% 0; }
 }
 body.home-v2 .hero-sub {
     font: 400 clamp(1.1rem,2vw,1.4rem)/1.4 'Cormorant Garamond', serif;
