@@ -114,6 +114,7 @@ body.home-v2 .hero {
 body.home-v2 .hero-bg {
     position: absolute; inset: 0;
     background: url('../img/fondos/portada.PNG') center center/cover no-repeat;
+    opacity: 1 !important; filter: none !important;
 }
 body.home-v2 .hero-overlay {
     position: absolute; inset: 0;
