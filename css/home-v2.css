@@ -13,8 +13,8 @@ body.home-v2 {
     --gold-muted: #8A7A52;
     --dark: #141210;
     --dark-warm: #1E1A16;
-    --v2-text-primary: #1A1510;
-    --v2-text-secondary: #5E5347;
+    --v2-text-primary: #F0EBE3;
+    --v2-text-secondary: #A69A8A;
     --v2-text-tertiary: #8A7D6B;
     --text-on-dark: #F0EBE3;
     --text-on-dark-sub: #A69A8A;
@@ -208,8 +208,8 @@ body.home-v2 .btn-g {
 body.home-v2 .btn-g:hover { background: var(--gold); box-shadow: 0 6px 24px rgba(184,149,46,0.25); }
 body.home-v2 .btn-o {
     font: 500 0.55rem/1 'Cinzel', serif; letter-spacing: 0.25em; text-transform: uppercase;
-    color: var(--v2-text-primary); background: transparent;
-    border: 1px solid var(--v2-text-secondary);
+    color: var(--gold-light); background: transparent;
+    border: 1px solid rgba(201,168,76,0.5);
     padding: 15px 40px; cursor: pointer; transition: all 0.4s;
 }
 body.home-v2 .btn-o:hover { border-color: var(--gold); color: var(--gold); }
