@@ -109,10 +109,11 @@ body.home-v2 .hamburger svg { display: block; }
 body.home-v2 .hero {
     min-height: 100vh; display: flex; align-items: center; justify-content: center;
     text-align: center; position: relative; overflow: hidden;
-    background: url('../img/fondos/portada.PNG') center center/cover no-repeat fixed;
+    background: var(--dark);
 }
 body.home-v2 .hero-bg {
-    display: none;
+    position: absolute; inset: 0;
+    background: url('../img/fondos/portada.PNG') center center/cover no-repeat;
 }
 body.home-v2 .hero-overlay {
     position: absolute; inset: 0;

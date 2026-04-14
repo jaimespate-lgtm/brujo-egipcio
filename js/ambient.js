@@ -159,18 +159,27 @@
     return btn;
   }
 
-  // Start on first user interaction
+  // Start on any user interaction (browsers require gesture for audio)
   var btn = createToggle();
+  var events = ['click', 'scroll', 'touchstart', 'mousemove', 'keydown', 'pointerdown'];
   function onFirstInteraction() {
     if (!started) {
       startAmbient();
       btn.classList.add('active');
     }
-    document.removeEventListener('click', onFirstInteraction);
-    document.removeEventListener('scroll', onFirstInteraction);
-    document.removeEventListener('touchstart', onFirstInteraction);
+    events.forEach(function(ev) { document.removeEventListener(ev, onFirstInteraction); });
   }
-  document.addEventListener('click', onFirstInteraction);
-  document.addEventListener('scroll', onFirstInteraction);
-  document.addEventListener('touchstart', onFirstInteraction);
+  events.forEach(function(ev) { document.addEventListener(ev, onFirstInteraction, { once: true }); });
+
+  // Also try autoplay immediately (works on some browsers/configs)
+  try {
+    var testCtx = new (window.AudioContext || window.webkitAudioContext)();
+    if (testCtx.state === 'running') {
+      testCtx.close();
+      startAmbient();
+      btn.classList.add('active');
+    } else {
+      testCtx.close();
+    }
+  } catch(e) {}
 })();
