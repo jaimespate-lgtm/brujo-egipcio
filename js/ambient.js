@@ -1,40 +1,39 @@
 // ============================================
 // BRUJO EGIPCIO — Música ambiente egipcia
+// Sin autoplay. Solo suena al pulsar el botón.
 // ============================================
 (function() {
-  var audio, started = false, btn;
+  var audio = null;
+  var playing = false;
+  var btn;
 
-  function startMusic() {
-    if (started) return;
-    started = true;
+  function initAudio() {
+    if (audio) return;
     audio = new Audio('audio/egyptian-ambient.mp3');
     audio.loop = true;
-    audio.volume = 0.3;
-    audio.play().catch(function() {});
+    audio.volume = 0.25;
   }
 
-  function createToggle() {
-    btn = document.createElement('button');
-    btn.className = 'ambient-toggle';
-    btn.innerHTML = '&#9835;';
-    btn.title = 'Música ambiente';
-    var muted = false;
-    btn.addEventListener('click', function(e) {
-      e.stopPropagation();
-      if (!started) { startMusic(); btn.classList.add('active'); return; }
-      muted = !muted;
-      audio.volume = muted ? 0 : 0.3;
-      btn.classList.toggle('active', !muted);
-    });
-    document.body.appendChild(btn);
+  function toggleMusic(e) {
+    if (e) e.stopPropagation();
+    initAudio();
+    if (playing) {
+      audio.pause();
+      playing = false;
+      btn.classList.remove('active');
+      btn.title = 'Activar música';
+    } else {
+      audio.play().catch(function() {});
+      playing = true;
+      btn.classList.add('active');
+      btn.title = 'Pausar música';
+    }
   }
 
-  createToggle();
-
-  var events = ['click', 'scroll', 'touchstart', 'mousemove', 'keydown', 'pointerdown'];
-  function onFirst() {
-    if (!started) { startMusic(); btn.classList.add('active'); }
-    events.forEach(function(ev) { document.removeEventListener(ev, onFirst); });
-  }
-  events.forEach(function(ev) { document.addEventListener(ev, onFirst, { once: true }); });
+  btn = document.createElement('button');
+  btn.className = 'ambient-toggle';
+  btn.innerHTML = '&#9835;';
+  btn.title = 'Activar música';
+  btn.addEventListener('click', toggleMusic);
+  document.body.appendChild(btn);
 })();

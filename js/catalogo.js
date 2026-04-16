@@ -33,12 +33,14 @@ const FILTROS_MAIN = [
 
 const COLORES = [
   { name: 'Azul', hex: '#4A90D9' },
-  { name: 'Violeta', hex: '#8B5EC0' },
-  { name: 'Verde', hex: '#3DAA6D' },
-  { name: 'Rosa', hex: '#D4708F' },
+  { name: 'Blanco', hex: '#E8E4DC' },
   { name: 'Dorado', hex: '#C5A028' },
+  { name: 'Multicolor', hex: 'linear-gradient(90deg,#D4708F,#4A90D9,#3DAA6D)' },
   { name: 'Negro', hex: '#444' },
-  { name: 'Multicolor', hex: 'linear-gradient(90deg,#D4708F,#4A90D9,#3DAA6D)' }
+  { name: 'Rojo', hex: '#B03030' },
+  { name: 'Rosa', hex: '#D4708F' },
+  { name: 'Verde', hex: '#3DAA6D' },
+  { name: 'Violeta', hex: '#8B5EC0' }
 ];
 
 function renderFiltros() {

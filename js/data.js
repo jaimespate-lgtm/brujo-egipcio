@@ -169,7 +169,7 @@ const PIEDRAS = [
     slug: "granate",
     origen: "India",
     mina: "Rajasthan",
-    color: "Rosa",
+    color: "Rojo",
     rareza: "Común",
     precio: 11000,
     tamano: "2.5 cm aprox",
@@ -281,7 +281,7 @@ const PIEDRAS = [
     slug: "labradorita-blanca",
     origen: "India",
     mina: "",
-    color: "Multicolor",
+    color: "Blanco",
     rareza: "Poco común",
     precio: 18000,
     tamano: "3 cm aprox",
@@ -457,7 +457,7 @@ const PIEDRAS = [
     slug: "piedra-luna",
     origen: "Sri Lanka",
     mina: "",
-    color: "Multicolor",
+    color: "Blanco",
     rareza: "Poco común",
     precio: 16000,
     tamano: "2.5 cm aprox",
@@ -569,7 +569,7 @@ const PIEDRAS = [
     slug: "rubi-en-matriz",
     origen: "India",
     mina: "",
-    color: "Rosa",
+    color: "Rojo",
     rareza: "Poco común",
     precio: 28000,
     tamano: "3.5 cm aprox",
@@ -1023,7 +1023,7 @@ const PIEDRAS = [
     slug: "rubi",
     origen: "India",
     mina: "Mysore",
-    color: "Rosa",
+    color: "Rojo",
     rareza: "Rara",
     precio: 40000,
     tamano: "2 cm aprox",
@@ -1263,7 +1263,7 @@ const PIEDRAS = [
     slug: "cinabrio",
     origen: "China",
     mina: "Hunan",
-    color: "Rosa",
+    color: "Rojo",
     rareza: "Rara",
     precio: 20000,
     tamano: "2.5 cm aprox",
@@ -1295,12 +1295,14 @@ const PIEDRAS = [
 // Colores de fondo para las cards (en función del color principal)
 const COLOR_GRADIENTS = {
   "Azul": "linear-gradient(135deg, #0A1628, #1A3A6B)",
-  "Violeta": "linear-gradient(135deg, #1A0A28, #2D1B4E)",
-  "Verde": "linear-gradient(135deg, #0A1A0A, #1A4A1A)",
-  "Rosa": "linear-gradient(135deg, #1A0A14, #3A1A2A)",
+  "Blanco": "linear-gradient(135deg, #E8E4DC, #F5F0E8)",
   "Dorado": "linear-gradient(135deg, #1A1A0A, #3A3A1A)",
+  "Multicolor": "linear-gradient(135deg, #0A1A1A, #1A3A3B)",
   "Negro": "linear-gradient(135deg, #0A0A0A, #1A1A1A)",
-  "Multicolor": "linear-gradient(135deg, #0A1A1A, #1A3A3B)"
+  "Rojo": "linear-gradient(135deg, #1A0A0A, #4A1A1A)",
+  "Rosa": "linear-gradient(135deg, #1A0A14, #3A1A2A)",
+  "Verde": "linear-gradient(135deg, #0A1A0A, #1A4A1A)",
+  "Violeta": "linear-gradient(135deg, #1A0A28, #2D1B4E)"
 };
 
 // Utilidades
@@ -1415,7 +1417,8 @@ const TIER_MAP = {
   "Común": null,
   "Poco común": "selecta",
   "Rara": "exclusiva",
-  "Muy rara": "reliquia"
+  "Muy rara": "reliquia",
+  "Exclusiva": "reliquia"
 };
 PIEDRAS.forEach(p => { p.tier = TIER_MAP[p.rareza] || null; });
 

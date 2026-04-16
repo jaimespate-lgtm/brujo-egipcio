@@ -61,29 +61,50 @@
     var activeRegion = null;
 
     var PIEDRAS_POR_REGION = {
-        brasil: [
-            { nombre: 'Calcita Caribe', img: 'Calcita Caribe.png', detalle: 'Carbonato azul vibrante' },
-            { nombre: 'Cobaltocalcita', img: 'Cobaltocalcita.jpg', detalle: 'Rosa intenso de cobalto' },
-            { nombre: 'Cuarzo Hematoide', img: 'Cuarzo Hematoide.jpg', detalle: 'Cuarzo con hierro rojo' },
-            { nombre: 'Cuarzo Rutilado Dorado', img: 'Cuarzo Rutilado Dorado.jpg', detalle: 'Agujas de titanio doradas' },
-            { nombre: 'Cuarzo Rutilado Plateado', img: 'Cuarzo Rutilado Plateado.jpg', detalle: 'Hilos de plata internos' }
+        afganistan: [
+            { nombre: 'Lapislázuli', img: 'Lapislázuli.jpg', detalle: 'Lazurita azul profundo' }
         ],
-        peru: [
-            { nombre: 'Crisocola', img: 'Crisocola.jpg', detalle: 'Silicato de cobre andino' },
-            { nombre: 'Fosfosiderita', img: 'Fosfosiderita.png', detalle: 'Fosfato lila delicado' }
+        argentina: [
+            { nombre: 'Rodocrosita', img: 'Rodocrosita.jpg', detalle: 'Rosa mangano argentino' },
+            { nombre: 'Ónix Cielo', img: 'Ónix Cielo.jpg', detalle: 'Calcedonia celeste patagónica' }
+        ],
+        australia: [
+            { nombre: 'Crisoprasa', img: 'Crisoprasa.jpg', detalle: 'Calcedonia verde níquel' },
+            { nombre: 'Ópalo Dendrítico', img: 'Ópalo Dendrítico.png', detalle: 'Sílice con dendritas internas' },
+            { nombre: 'Jaspe Cocodrilo', img: 'Jaspe Cocodrilo.png', detalle: 'Calcedonia con textura reptil' },
+            { nombre: 'Atlantisita', img: 'Atlantisita.jpg', detalle: 'Serpentina + stichtita' },
+            { nombre: 'Mokaita', img: 'Mokaita.png', detalle: 'Jaspe australiano multicolor' }
         ],
         bolivia: [
             { nombre: 'Bolivianita', img: 'Bolivianita.jpg', detalle: 'Ametrino exclusivo boliviano' }
         ],
+        brasil: [
+            { nombre: 'Cianita Azul', img: 'Cianita Azul.jpg', detalle: 'Silicato de aluminio laminar' },
+            { nombre: 'Cuarzo Hematoide', img: 'Cuarzo Hematoide.jpg', detalle: 'Cuarzo con hierro rojo' },
+            { nombre: 'Cuarzo Rutilado Dorado', img: 'Cuarzo Rutilado Dorado.jpg', detalle: 'Agujas de titanio doradas' },
+            { nombre: 'Cuarzo Rutilado Plateado', img: 'Cuarzo Rutilado Plateado.jpg', detalle: 'Hilos de plata internos' },
+            { nombre: 'Sodalita', img: 'Sodalita.jpg', detalle: 'Tectosilicato azul intenso' },
+            { nombre: 'Rodonita', img: 'Rodonita.png', detalle: 'Silicato mangano rosa y negro' },
+            { nombre: 'Dumortierita', img: 'Dumortierita.png', detalle: 'Borosilicato azul violáceo' },
+            { nombre: 'Aguamarina', img: 'Aguamarina.jpg', detalle: 'Berilo azul transparente' },
+            { nombre: 'Amazonita', img: 'Amazonita.jpg', detalle: 'Feldespato verde agua' },
+            { nombre: 'Turmalina Negra', img: 'Turmalina Negra.png', detalle: 'Borosilicato protector' },
+            { nombre: 'Lepidolita', img: 'Lepidolita.png', detalle: 'Mica litio violeta' },
+            { nombre: 'Turmalina Rosa', img: 'Turmalina Rosa.jpg', detalle: 'Elbaíta rosa del corazón' }
+        ],
+        chile: [
+            { nombre: 'Fosfosiderita', img: 'Fosfosiderita.png', detalle: 'Fosfato lila delicado' }
+        ],
+        china: [
+            { nombre: 'Fluorita Multicolor', img: 'Fluorita Multicolor.jpg', detalle: 'Fluoruro con bandas de color' },
+            { nombre: 'Cinabrio', img: 'Cinabrio.jpg', detalle: 'Sulfuro de mercurio rojo' }
+        ],
         colombia: [
             { nombre: 'Esmeralda en Matriz', img: 'Esmeralda en matriz.png', detalle: 'Berilo verde en roca madre' }
         ],
-        chile: [
-            { nombre: 'Lapislázuli', img: 'Lapislázuli.jpg', detalle: 'Lazurita azul profundo' }
-        ],
-        mexico: [
-            { nombre: 'Fluorita Multicolor', img: 'Fluorita Multicolor.jpg', detalle: 'Fluoruro multicolor' },
-            { nombre: 'Jaspe Imperial', img: 'Jaspe Imperial.jpg', detalle: 'Calcedonia roja imperial' }
+        congo: [
+            { nombre: 'Cobaltocalcita', img: 'Cobaltocalcita.jpg', detalle: 'Rosa intenso de cobalto' },
+            { nombre: 'Malaquita', img: 'Malaquita.jpg', detalle: 'Carbonato de cobre bandeado' }
         ],
         dominicana: [
             { nombre: 'Larimar', img: 'Larimar.png', detalle: 'Pectolita azul caribeña' }
@@ -91,53 +112,106 @@
         espana: [
             { nombre: 'Aragonita', img: 'Aragonita.png', detalle: 'Carbonato en cristales tabulares' }
         ],
-        marruecos: [
-            { nombre: 'Azurita', img: 'Azurita.png', detalle: 'Carbonato de cobre azul' },
-            { nombre: 'Calcopirita', img: 'Calcopirita.jpg', detalle: 'Sulfuro iridiscente' }
+        eeuu: [
+            { nombre: 'Unakita', img: 'Unakita.png', detalle: 'Epidota + feldespato rosa' }
         ],
-        congo: [
-            { nombre: 'Cianita Azul', img: 'Cianita Azul.jpg', detalle: 'Silicato de aluminio laminar' }
+        etiopia: [
+            { nombre: 'Ópalo Etíope', img: 'Ópalo Etíope.png', detalle: 'Sílice con juego de colores' }
         ],
-        madagascar: [
-            { nombre: 'Amazonita', img: 'Amazonita.jpg', detalle: 'Feldespato verde agua' },
-            { nombre: 'Crisoprasa', img: 'Crisoprasa.jpg', detalle: 'Calcedonia verde manzana' },
-            { nombre: 'Jaspe Océano', img: 'Jaspe Océano.jpg', detalle: 'Orbicular con patrones marinos' },
-            { nombre: 'Labradorita Negra', img: 'Labradorita Negra.jpg', detalle: 'Iridiscencia spectral' }
+        groenlandia: [
+            { nombre: 'Nuummita', img: 'Nuummita.jpg', detalle: 'Antofilita iridiscente milenaria' }
         ],
         india: [
-            { nombre: 'Fucsita con Rubí', img: 'Fucsita con Rubí.jpg', detalle: 'Mica verde con corindon' },
+            { nombre: 'Fucsita con Rubí', img: 'Fucsita con Rubí.jpg', detalle: 'Mica verde con corindón' },
             { nombre: 'Granate', img: 'Granate.jpg', detalle: 'Silicato rojo profundo' },
-            { nombre: 'Labradorita Blanca', img: 'Labradorita Blanca.jpg', detalle: 'Moonstone arcoiris' }
-        ],
-        pakistan: [
-            { nombre: 'K2', img: 'K2.jpg', detalle: 'Granito con azurita del Karakorum' }
-        ],
-        afganistan: [
-            { nombre: 'Apatita', img: 'Apatita.jpg', detalle: 'Fosfato azul neon' }
-        ],
-        rusia: [
-            { nombre: 'Charoita', img: 'Charoita.jpg', detalle: 'Silicato púrpura del lago Baikal' }
-        ],
-        china: [
-            { nombre: 'Jaspe Abejorro', img: 'Jaspe Abejorro.jpg', detalle: 'Volcanico amarillo y negro' },
-            { nombre: 'Iolita', img: 'Iolita.jpg', detalle: 'Cordierita violeta pleocroica' }
+            { nombre: 'Iolita', img: 'Iolita.jpg', detalle: 'Cordierita violeta pleocroica' },
+            { nombre: 'Labradorita Blanca', img: 'Labradorita Blanca.jpg', detalle: 'Moonstone arcoíris' },
+            { nombre: 'Piedra Sol', img: 'Piedra Sol.jpg', detalle: 'Feldespato con aventurescencia' },
+            { nombre: 'Rubí en matriz', img: 'Rubí en matriz.png', detalle: 'Corindón rojo en roca madre' },
+            { nombre: 'Cavansita', img: 'Cavansita.jpg', detalle: 'Vanadio-silicato azul intenso' },
+            { nombre: 'Cianita con Rubí', img: 'Cianita con Rubí.jpg', detalle: 'Silicato azul con corindón' },
+            { nombre: 'Rubí', img: 'Rubí.jpg', detalle: 'Corindón rojo noble' }
         ],
         indonesia: [
-            { nombre: 'Atlantisita', img: 'Atlantisita.jpg', detalle: 'Serpentina + stichtita tasmana' }
+            { nombre: 'Jaspe Abejorro', img: 'Jaspe Abejorro.jpg', detalle: 'Volcánico amarillo y negro' },
+            { nombre: 'Coral Fosilizado', img: 'Coral Fosilizado.jpg', detalle: 'Coral antiguo mineralizado' }
         ],
-        australia: [
-            { nombre: 'Jaspe Imperial', img: 'Jaspe Imperial.jpg', detalle: 'Calcedonia roja del outback' },
-            { nombre: 'Crisoprasa', img: 'Crisoprasa.jpg', detalle: 'Calcedonia verde niquel' }
+        iran: [
+            { nombre: 'Turquesa', img: 'Turquesa.jpg', detalle: 'Fosfato de cobre milenario' }
+        ],
+        madagascar: [
+            { nombre: 'Jaspe Océano', img: 'Jaspe Océano.jpg', detalle: 'Orbicular con patrones marinos' },
+            { nombre: 'Labradorita Negra', img: 'Labradorita Negra.jpg', detalle: 'Iridiscencia espectral' },
+            { nombre: 'Ortoclasa', img: 'Ortoclasa.jpg', detalle: 'Feldespato dorado' },
+            { nombre: 'Septaria', img: 'Septaria.png', detalle: 'Nódulo con vetas de calcita' },
+            { nombre: 'Apatita', img: 'Apatita.jpg', detalle: 'Fosfato azul neón' }
+        ],
+        mali: [
+            { nombre: 'Prehnita', img: 'Prehnita.jpg', detalle: 'Silicato verde translúcido' }
+        ],
+        marruecos: [
+            { nombre: 'Azurita', img: 'Azurita.png', detalle: 'Carbonato de cobre azul' }
+        ],
+        mexico: [
+            { nombre: 'Calcopirita', img: 'Calcopirita.jpg', detalle: 'Sulfuro iridiscente' },
+            { nombre: 'Jaspe Imperial', img: 'Jaspe Imperial.jpg', detalle: 'Calcedonia roja imperial' },
+            { nombre: 'Obsidiana Arcoíris', img: 'Obsidiana Arcoíris.png', detalle: 'Vidrio volcánico iridiscente' },
+            { nombre: 'Obsidiana Caoba', img: 'Obsidiana Caoba.png', detalle: 'Vidrio volcánico con hierro' },
+            { nombre: 'Ópalo de Fuego', img: 'Ópalo de Fuego.jpg', detalle: 'Sílice naranja brillante' },
+            { nombre: 'Riolita', img: 'Riolita.png', detalle: 'Volcánica con patrones orbiculares' },
+            { nombre: 'Calcita Miel', img: 'Calcita Miel.jpg', detalle: 'Carbonato dorado translúcido' },
+            { nombre: 'Calcita Naranja', img: 'Calcita Naranja.jpg', detalle: 'Carbonato naranja vibrante' },
+            { nombre: 'Obsidiana Dorada', img: 'Obsidiana Dorada.png', detalle: 'Vidrio volcánico con sheen dorado' },
+            { nombre: 'Obsidiana Plateada', img: 'Obsidiana Plateada.png', detalle: 'Vidrio volcánico con sheen plata' },
+            { nombre: 'Jaspe Leopardita', img: 'Jaspe Leopardita.png', detalle: 'Riolita con manchas orbiculares' }
+        ],
+        namibia: [
+            { nombre: 'Pietersita', img: 'Pietersita.png', detalle: 'Ojo de halcón brechado' },
+            { nombre: 'Shattuckita', img: 'Shattuckita.jpg', detalle: 'Silicato de cobre azul intenso' }
+        ],
+        noruega: [
+            { nombre: 'Larvikita', img: 'Larvikita.jpg', detalle: 'Feldespato con labradorescencia' },
+            { nombre: 'Thulite', img: 'Thulite.jpg', detalle: 'Zoisita rosa noruega' }
+        ],
+        pakistan: [
+            { nombre: 'K2', img: 'K2.jpg', detalle: 'Granito con azurita del Karakorum' },
+            { nombre: 'Calcita Caribe', img: 'Calcita Caribe.png', detalle: 'Carbonato azul vibrante' }
+        ],
+        peru: [
+            { nombre: 'Crisocola', img: 'Crisocola.jpg', detalle: 'Silicato de cobre andino' },
+            { nombre: 'Pirita', img: 'Pirita.jpg', detalle: 'Sulfuro de hierro dorado' },
+            { nombre: 'Serpentina', img: 'Serpentina.png', detalle: 'Silicato verde serpentiforme' }
+        ],
+        rusia: [
+            { nombre: 'Serafinita', img: 'Serafinita.png', detalle: 'Clinocloro con plumas plateadas' },
+            { nombre: 'Charoita', img: 'Charoita.jpg', detalle: 'Silicato púrpura del lago Baikal' }
+        ],
+        srilanka: [
+            { nombre: 'Piedra Luna', img: 'Piedra Luna.jpg', detalle: 'Feldespato con adularescencia' }
+        ],
+        sudafrica: [
+            { nombre: 'Ojo de Halcón', img: 'Ojo de Halcón.png', detalle: 'Cuarzo fibroso azul' },
+            { nombre: 'Ojo de Tigre', img: 'Ojo de Tigre.png', detalle: 'Cuarzo fibroso dorado' },
+            { nombre: 'Ojo de Buey', img: 'Ojo de Buey.png', detalle: 'Cuarzo fibroso rojo' },
+            { nombre: 'Sugilita', img: 'Sugilita.jpg', detalle: 'Ciclosilicato púrpura raro' }
+        ],
+        tanzania: [
+            { nombre: 'Zoisita con Rubí', img: 'Zoisita con Rubí.jpg', detalle: 'Zoisita verde con corindón' },
+            { nombre: 'Tanzanita', img: 'Tanzanita.jpg', detalle: 'Zoisita azul violáceo' }
         ]
     };
 
     var NOMBRES_REGION = {
-        brasil: 'Brasil', peru: 'Perú', bolivia: 'Bolivia', colombia: 'Colombia',
-        chile: 'Chile', mexico: 'México', dominicana: 'Rep. Dominicana',
-        espana: 'España', marruecos: 'Marruecos', congo: 'Congo',
-        madagascar: 'Madagascar', india: 'India', pakistan: 'Pakistan',
-        afganistan: 'Afganistán', rusia: 'Rusia', china: 'China',
-        indonesia: 'Indonesia', australia: 'Australia'
+        afganistan: 'Afganistán', argentina: 'Argentina', australia: 'Australia',
+        bolivia: 'Bolivia', brasil: 'Brasil', chile: 'Chile', china: 'China',
+        colombia: 'Colombia', congo: 'Congo', dominicana: 'Rep. Dominicana',
+        espana: 'España', eeuu: 'Estados Unidos', etiopia: 'Etiopía',
+        groenlandia: 'Groenlandia', india: 'India', indonesia: 'Indonesia',
+        iran: 'Irán', madagascar: 'Madagascar', mali: 'Mali',
+        marruecos: 'Marruecos', mexico: 'México', namibia: 'Namibia',
+        noruega: 'Noruega', pakistan: 'Pakistán', peru: 'Perú',
+        rusia: 'Rusia', srilanka: 'Sri Lanka', sudafrica: 'Sudáfrica',
+        tanzania: 'Tanzania'
     };
 
     function showTooltipMap(dot, region) {

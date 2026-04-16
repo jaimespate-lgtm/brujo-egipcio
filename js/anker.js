@@ -187,4 +187,83 @@
     return div.innerHTML;
   }
 
+  // ====== TEXTURAS DINÁMICAS DE ANUBIS ======
+  const ANUBIS_TEXTURES = {
+    default:   'img/AsistenteAnubis/IMG_3987.PNG', // Papiro dorado
+    chat:      'img/AsistenteAnubis/IMG_3927.PNG', // Negro bronce — guardián activo
+    cart:      'img/AsistenteAnubis/IMG_3933.PNG', // Escamas cobrizas — modo comercio
+    night:     'img/AsistenteAnubis/IMG_3957.PNG', // Madera oscura — nocturno
+    alchemy:   'img/AsistenteAnubis/IMG_3950.PNG', // Turquesa pátina — alquimia
+    hover:     'img/AsistenteAnubis/IMG_3939.PNG', // Mármol blanco oro — sagrado
+    marble:    'img/AsistenteAnubis/IMG_3928.PNG', // Marfil beige — quiz/sabiduría
+    terra:     'img/AsistenteAnubis/IMG_3940.PNG'  // Terracota — tierra
+  };
+
+  const floatImg = document.getElementById('anubisFloatImg');
+  const avatarImg = document.getElementById('anubisAvatarImg');
+  let currentTexture = 'default';
+
+  function setAnubisTexture(key) {
+    if (key === currentTexture) return;
+    var src = ANUBIS_TEXTURES[key] || ANUBIS_TEXTURES.default;
+    if (floatImg) floatImg.src = src;
+    if (avatarImg) avatarImg.src = src;
+    currentTexture = key;
+  }
+
+  function getAnubisState() {
+    if (chatOpen) return 'chat';
+    var h = new Date().getHours();
+    if (h >= 21 || h < 6) return 'night';
+    var cart = [];
+    try { cart = JSON.parse(localStorage.getItem('brujo_cart') || '[]'); } catch(e) {}
+    if (cart.length > 0) return 'cart';
+    if (document.querySelector('.alquimia') && isInViewport(document.querySelector('.alquimia'))) return 'alchemy';
+    return 'default';
+  }
+
+  function isInViewport(el) {
+    if (!el) return false;
+    var r = el.getBoundingClientRect();
+    return r.top < window.innerHeight && r.bottom > 0;
+  }
+
+  function updateAnubisTexture() {
+    setAnubisTexture(getAnubisState());
+  }
+
+  // Hover effect on float
+  if (floatEl) {
+    floatEl.addEventListener('mouseenter', function() { setAnubisTexture('hover'); });
+    floatEl.addEventListener('mouseleave', function() { updateAnubisTexture(); });
+  }
+
+  // Update texture on scroll and periodically
+  var scrollTimer;
+  window.addEventListener('scroll', function() {
+    clearTimeout(scrollTimer);
+    scrollTimer = setTimeout(updateAnubisTexture, 150);
+  });
+  setInterval(updateAnubisTexture, 30000);
+
+  // Override open/close to trigger texture changes
+  var origOpenClick = floatEl ? floatEl.onclick : null;
+  if (floatEl) {
+    var origClickListeners = true;
+    // texture updates after chat open/close already happen via chatOpen variable
+  }
+
+  // Observe chatOpen changes
+  var chatObserver = new MutationObserver(function() {
+    var isOpen = chatEl && chatEl.classList.contains('open');
+    if (isOpen !== chatOpen) {
+      chatOpen = isOpen;
+      updateAnubisTexture();
+    }
+  });
+  if (chatEl) chatObserver.observe(chatEl, { attributes: true, attributeFilter: ['class'] });
+
+  // Initial texture
+  updateAnubisTexture();
+
 })();
